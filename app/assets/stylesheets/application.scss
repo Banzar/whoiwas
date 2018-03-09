@@ -1,0 +1,130 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+@import "bootstrap";
+
+BODY {
+	background-color: #f9f9f9;
+}
+
+TH {
+	padding: 4px;
+}
+TD {
+	padding: 4px;
+}
+
+.clear{
+	clear: both;
+}
+.content_body{
+	width: 850px;
+	height: 1000px;
+	float: left;
+
+}
+.container_body {
+	width:1100px;
+	height: 800px;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-right: auto;
+	margin-top: 100px;
+	margin-left: auto;
+	background-color: #ffffff;
+	border-radius: 25px;
+
+}
+.container_top {
+	width:100%;
+	height: auto;
+	position: fixed;
+	background-color: #ffffff;
+
+}
+.container_top ul {
+	list-style-type: none;
+}
+.container_top li {
+	display: inline;
+	float: right;
+
+}
+.container_top li a {
+	color: #000000;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: Tahoma;
+	margin-left: 6px;
+}
+.container_top li a:hover {
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: Tahoma;
+	margin-left: 6px;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+}
+
+.left_column {
+	width: 200px;
+	float: left;
+	height: 1000px;
+	margin: 20px;
+}
+.title {
+	text-align: center;
+	height: 84px;
+	margin: auto;
+}
+.title H1 {
+	font-family: Fantasy;
+	text-shadow: 4px 4px 8px #C0C0C0;
+	font-size: 72px;
+	color: #000000;
+}
+.white_space {
+	height: 33px;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+
+}
