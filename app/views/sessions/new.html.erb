@@ -1,0 +1,9 @@
+<div class="content_body">
+	<h1>Log in</h1>
+	<%= simple_form_for(:session, url: login_path) do |f| %>
+		<%= f.input :email %>
+		<%= f.input :password %>
+		<%= f.submit %>
+	<% end %>
+	<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+</div>

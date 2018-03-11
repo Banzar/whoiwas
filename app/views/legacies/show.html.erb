@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @legacy.name %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @legacy.age %>
+</p>
+
+<p>
+  <strong>Born on:</strong>
+  <%= @legacy.born_on %>
+</p>
+
+<p>
+  <strong>Passed on:</strong>
+  <%= @legacy.passed_on %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @legacy.country %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @legacy.state %>
+</p>
+
+<p>
+  <strong>County:</strong>
+  <%= @legacy.county %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @legacy.city %>
+</p>
+
+<p>
+  <strong>About:</strong>
+  <%= @legacy.about %>
+</p>
+
+<%= link_to 'Edit', edit_legacy_path(@legacy) %> |
+<%= link_to 'Back', legacies_path %>

@@ -2,7 +2,22 @@
     <ul>
       <li>
         <%= link_to "Home", root_path %>
-      </li>      
+      </li>
+      <% if current_user %>
+      <li>
+        <%= link_to "Log out", logout_path %>
+      </li>
+      <% else %>
+      <li>
+        <%= link_to "Log in", login_path %>
+      </li>
+      <li>
+        <%= link_to "Sign Up", signup_path %>
+      </li>
+      <% end %>
+      <li>
+        
+      </li>
     </ul>
       
     <div class="clear"></div>
@@ -10,7 +25,5 @@
       <h1>Legacy - Who I was</h1>
     </div>  
   </div>
-  <div class="white_space">
-    <%= notice %>
-    <%= alert %>   
+  <div class="white_space"> 
   </div>

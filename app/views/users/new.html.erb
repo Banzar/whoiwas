@@ -1,10 +1,3 @@
 <div class="content_body">
-	<%= simple_form_for(@user, html: { multipart: true }) do |user| %>
-    	<%= render 'shared/error_messages' %>
-		<%= user.input :name %>
-		<%= user.input :email %>
-		<%= user.input :password %>
-		<%= user.input :password_confirmation %>
-		<%= user.submit "Create My Account" %>
-	<% end %>
+	<%= render 'form' %>
 </div>

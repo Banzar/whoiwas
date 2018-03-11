@@ -4,3 +4,7 @@
 <p><%= @user.email %></p>
 <p><%= @user.created_at %></p>
 <p><%= Time.now %></p>
+
+<% if current_user %>
+	<%= current_user.name %> is the current_user... muahaha	
+<% end %>

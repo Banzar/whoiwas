@@ -1,0 +1,21 @@
+
+<%= simple_form_for(@legacy) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :age %>
+    <%= f.input :born_on %>
+    <%= f.input :passed_on %>
+    <%= f.label :country %>
+    <%= f.country_select("country", only: ["AG", "AU", "BS", "BZ", "CA", "DM", "GD", "GY", "IE", "JM", "NZ", "KN", "LC", "VC", "TT", "GB", "US"], selected: ["US"]) %>
+    <%= f.input :state, city_states %>
+    <%= f.input :county %>
+    <%= f.input :city %>
+    <%= f.input :about %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -4,13 +4,18 @@ class UsersController < ApplicationController
   end
 
   def new
+    if current_user
+      flash[:notice] = "You cannot sign up, you are currently logged in."
+      redirect_to current_user
+    end
   	@user = User.new
   end
 
   def create
   	@user = User.new(user_params)
   	if @user.save
-  		flash[:success] = "Welcome to Who I WAS"
+      log_in @user
+  		flash[:notice] = "Welcome to Who I WAS"
   		redirect_to @user
   	else
   		render 'new'
