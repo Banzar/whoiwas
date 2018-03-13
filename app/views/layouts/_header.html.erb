@@ -1,29 +1,23 @@
-  <div class="container_top">
-    <ul>
-      <li>
-        <%= link_to "Home", root_path %>
-      </li>
-      <% if current_user %>
-      <li>
-        <%= link_to "Log out", logout_path %>
-      </li>
-      <% else %>
-      <li>
-        <%= link_to "Log in", login_path %>
-      </li>
-      <li>
-        <%= link_to "Sign Up", signup_path %>
-      </li>
-      <% end %>
-      <li>
-        
-      </li>
-    </ul>
-      
-    <div class="clear"></div>
-    <div class="title">
-      <h1>The ones we've lost</h1>
-    </div>  
-  </div>
-  <div class="white_space"> 
-  </div>
+<div class="container_top">
+  <ul>
+    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Legacies", legacies_path %></li>
+    <% if logged_in? %>
+      <li><%= link_to "Memories", memories_path %></li>
+      <li><%= link_to "Log out", logout_path %></li>
+      <li><%= link_to "Users", users_index_path %></li>
+      <li><%= link_to "Profile", current_user %></li>
+      <li><%= link_to "Settings", '#' %></li>
+    <% else %>
+      <li><%= link_to "Log in", login_path %></li>
+      <li><%= link_to "Sign Up", signup_path %></li>
+    <% end %>
+  </ul>
+    
+  <div class="clear"></div>
+  <div class="title">
+    <h1>The ones we've lost</h1>
+  </div>  
+</div>
+<div class="white_space"> 
+</div>

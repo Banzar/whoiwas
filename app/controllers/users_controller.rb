@@ -13,10 +13,12 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
-    if @user.email.include?("@gmail.com") || @user.email.include?("yahoo.com") || @user.email.include?("@icloud.com")
+    if @user.email.include?("@gmail.com") || 
+      @user.email.include?("yahoo.com") || 
+      @user.email.include?("@icloud.com")
     	if @user.save
         log_in @user
-    		flash[:notice] = "Welcome to Who I WAS"
+    		flash[:notice] = "Welcome to the Legacy Files"
     		redirect_to @user
     	else
     		render 'new'
@@ -28,6 +30,18 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    respond_to do |format|
+    if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def show

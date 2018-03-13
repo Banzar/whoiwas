@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'signup', to: 'users#new'
 
-  get 'users/edit'
+  get 'users/edit' 
 
   get 'users/show'
 
