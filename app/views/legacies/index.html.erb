@@ -1,43 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="container_body">
+  <div class="content_body">
+    <h1>Legacies</h1>
 
-<h1>Legacies</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Born on</th>
+          <th>Passed on</th>
+          <th>Country</th>
+          <th>State</th>
+          <th>County</th>
+          <th>City</th>
+          <th>About</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Born on</th>
-      <th>Passed on</th>
-      <th>Country</th>
-      <th>State</th>
-      <th>County</th>
-      <th>City</th>
-      <th>About</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <tbody>
+        <% @legacies.each do |legacy| %>
+          <tr>
+            <td><%= legacy.name %></td>
+            <td><%= legacy.age %></td>
+            <td><%= legacy.born_on %></td>
+            <td><%= legacy.passed_on %></td>
+            <td><%= legacy.country %></td>
+            <td><%= legacy.state %></td>
+            <td><%= legacy.county %></td>
+            <td><%= legacy.city %></td>
+            <td><%= legacy.about %></td>
+            <td><%= link_to 'Show', legacy %></td>
+            <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
+            <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <tbody>
-    <% @legacies.each do |legacy| %>
-      <tr>
-        <td><%= legacy.name %></td>
-        <td><%= legacy.age %></td>
-        <td><%= legacy.born_on %></td>
-        <td><%= legacy.passed_on %></td>
-        <td><%= legacy.country %></td>
-        <td><%= legacy.state %></td>
-        <td><%= legacy.county %></td>
-        <td><%= legacy.city %></td>
-        <td><%= legacy.about %></td>
-        <td><%= link_to 'Show', legacy %></td>
-        <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
-        <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <br>
 
-<br>
+    <%= link_to 'New Legacy', new_legacy_path %>
+  </div>
+</div>
 
-<%= link_to 'New Legacy', new_legacy_path %>

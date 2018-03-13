@@ -1,49 +1,87 @@
-<p id="notice"><%= notice %></p>
+<div class="container_body">
+  <div class="content_body">
+    <p>
+      <strong>Name:</strong>
+      <%= @legacy.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @legacy.name %>
-</p>
+    <p>
+      <strong>Age:</strong>
+      <%= @legacy.age %>
+    </p>
 
-<p>
-  <strong>Age:</strong>
-  <%= @legacy.age %>
-</p>
+    <p>
+      <strong>Born on:</strong>
+      <%= @legacy.born_on.strftime("%A, %B %d, %Y") %>
+    </p>
 
-<p>
-  <strong>Born on:</strong>
-  <%= @legacy.born_on %>
-</p>
+    <p>
+      <strong>Passed on:</strong>
+      <%= @legacy.passed_on.strftime("%A, %B %d, %Y") %>
+    </p>
 
-<p>
-  <strong>Passed on:</strong>
-  <%= @legacy.passed_on %>
-</p>
+    <p>
+      <strong>Country:</strong>
+      <%= @legacy.country %>
+    </p>
 
-<p>
-  <strong>Country:</strong>
-  <%= @legacy.country %>
-</p>
+    <p>
+      <strong>State:</strong>
+      <%= @legacy.state %>
+    </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @legacy.state %>
-</p>
+    <p>
+      <strong>County:</strong>
+      <%= @legacy.county %>
+    </p>
 
-<p>
-  <strong>County:</strong>
-  <%= @legacy.county %>
-</p>
+    <p>
+      <strong>City:</strong>
+      <%= @legacy.city %>
+    </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @legacy.city %>
-</p>
+    <p>
+      <strong>About:</strong>
+      <%= @legacy.about %>
+    </p>
+    <p>
+      <strong>Created by:</strong>
+      <%= @legacy.user.name %>
+    </p>
+    <% if @legacy.memories.present? %>
+    <p>
+      <h1 align="center">Memories</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>What happened</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<p>
-  <strong>About:</strong>
-  <%= @legacy.about %>
-</p>
+      <tbody>
+        <% @legacy.memories.each do |memory| %>
+          <tr>
+            <td><%= memory.title %></td>
+            <td><%= memory.what_happened %></td>
+            <td><%= link_to 'Show', memory %></td>
+            <td><%= link_to 'Edit', edit_memory_path(memory) %></td>
+            <td><%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </p>
+    <% end %>
+    <p>
+      <legend>Entered by:</legend>
+      <%= link_to image_tag(@legacy.user.avatar.url, size: "40x40"), @legacy.user %><br />
+      <%= @legacy.user.name %>
+    </p>
+    <%= link_to 'Edit', edit_legacy_path(@legacy) %> |
+    <%= link_to 'Back', legacies_path %>
 
-<%= link_to 'Edit', edit_legacy_path(@legacy) %> |
-<%= link_to 'Back', legacies_path %>
+  </div>
+</div>
+

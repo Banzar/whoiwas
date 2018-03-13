@@ -1,6 +1,7 @@
 	<%= simple_form_for(@user, html: { multipart: true }) do |user| %>
     	<%= render 'shared/error_messages' %>
 		<%= user.input :name %>
+		<%= user.input :avatar, as: :file %>
 		<%= user.input :email %>
 		<%= user.input :password %>
 		<%= user.input :password_confirmation %>

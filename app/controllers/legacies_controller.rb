@@ -14,7 +14,7 @@ class LegaciesController < ApplicationController
 
   # GET /legacies/new
   def new
-    @legacy = Legacy.new
+    @legacy = current_user.legacies.build
   end
 
   # GET /legacies/1/edit
@@ -24,7 +24,7 @@ class LegaciesController < ApplicationController
   # POST /legacies
   # POST /legacies.json
   def create
-    @legacy = Legacy.new(legacy_params)
+    @legacy = current_user.legacies.build(legacy_params)
 
     respond_to do |format|
       if @legacy.save

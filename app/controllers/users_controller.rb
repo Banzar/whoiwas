@@ -13,13 +13,18 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
-  	if @user.save
-      log_in @user
-  		flash[:notice] = "Welcome to Who I WAS"
-  		redirect_to @user
-  	else
-  		render 'new'
-  	end
+    if @user.email.include?("@gmail.com") || @user.email.include?("yahoo.com") || @user.email.include?("@icloud.com")
+    	if @user.save
+        log_in @user
+    		flash[:notice] = "Welcome to Who I WAS"
+    		redirect_to @user
+    	else
+    		render 'new'
+    	end
+    else
+      render 'new'
+      flash[:notice] = "You do not have a valid email"
+    end
   end
 
   def edit
@@ -32,6 +37,6 @@ class UsersController < ApplicationController
 private
 
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+		params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
 	end	
 end

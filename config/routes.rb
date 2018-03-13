@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :legacies
+
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   
   get 'home/index'
 
+  resources :memories
+  resources :legacies
   resources :users
 end
