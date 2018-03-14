@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  before_action :user_logged_in?, only: [:update, :edit]
   def index
-  	@users = User.all
+  	@users = User.paginate(page: params[:page], per_page: 4)
   end
 
   def new
@@ -30,9 +31,15 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    unless current_user == @user || current_user.admin?
+      flash[:notice] = "You can only edit your own profile."
+      redirect_to @user
+    end
   end
 
   def update
+    @user = User.find(params[:id])
     respond_to do |format|
     if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -44,6 +51,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    unless current_user == @user || current_user.admin?
+      flash[:notice] = "You can only delete your own profile."
+      redirect_to users_url
+      return
+    end
+    User.find(params[:id]).destroy
+    flash[:notice] = "User deleted"
+    redirect_to users_url
+  end
+
   def show
   	@user = User.find(params[:id])
   end
@@ -53,4 +71,12 @@ private
 	def user_params
 		params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
 	end	
+
+  def user_logged_in?
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in."
+      redirect_to login_path
+    end
+  end
 end

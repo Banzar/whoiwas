@@ -11,6 +11,8 @@ gem 'simple_form', '~> 3.5', '>= 3.5.1'
 gem "paperclip", "= 4.3.6" # (4.3.7 has deprecation warnings for pre-upgrade)
 gem "aws-sdk", "< 2.0"
 gem 'figaro'
+gem 'will_paginate',           '3.1.6'
+gem 'bootstrap-will_paginate', '1.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 

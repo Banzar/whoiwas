@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312175044) do
+ActiveRecord::Schema.define(version: 20180313165527) do
 
   create_table "legacies", force: :cascade do |t|
     t.string "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180312175044) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

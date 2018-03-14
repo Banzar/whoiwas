@@ -1,5 +1,38 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
-<% @users.each do |f| %>
-<p><%= f.name %>, <%= f.email %></p>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>All Users</title>
+</head>
+<body>
+<div class="content_body">
+<%= will_paginate(:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination-sm') %>
+    <table>
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+          	<% if user.avatar.present? %>
+            	<td><%= image_tag user.avatar.url, size: 40 %></td>
+            <% else %>
+            	<td><img src="/assets/nopic.png" height="40" width="40" /></td>
+            <% end %>
+            <td><%= link_to user.name, user %></td>
+            <td><a href="mailto:<%= user.email %>" target="_top"><%= user.email %></a></td>
+            <td><%= link_to 'Edit', edit_user_path(user) %></td>
+            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+</body>
+</html>
+
