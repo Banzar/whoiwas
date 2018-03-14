@@ -69,6 +69,6 @@ class LegaciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def legacy_params
-      params.require(:legacy).permit(:name, :age, :born_on, :passed_on, :country, :state, :county, :city, :about)
+      params.require(:legacy).permit(:name, :age, :born_on, :passed_on, :country, :state, :county, :city, :about, :photo)
     end
 end

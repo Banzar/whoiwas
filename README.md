@@ -1,24 +1,14 @@
-# README
+# Legacy File
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Creating a place to morn those we have lost in life, and also make their life apart of a museum online.
 
 Things you may want to cover:
 
-* Ruby version
+* Create User Models
 
-* System dependencies
+* Create Legacy Models
 
-* Configuration
+* Create Memory model
 
-* Database creation
+* Will still need to add account activations for users to make so not all people can create
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
