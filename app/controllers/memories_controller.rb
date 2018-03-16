@@ -4,7 +4,7 @@ class MemoriesController < ApplicationController
   # GET /memories
   # GET /memories.json
   def index
-    @memories = Memory.all
+    @memories = Memory.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /memories/1
@@ -69,6 +69,6 @@ class MemoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def memory_params
-      params.require(:memory).permit(:title, :what_happened, :legacy_id)
+      params.require(:memory).permit(:title, :what_happened, :legacy_id, :photo)
     end
 end

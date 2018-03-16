@@ -1,90 +1,43 @@
-<div class="container_body">
-  <div class="content_body">
-    <p>
-      <strong>Name:</strong>
-      <%= @legacy.name %>
-    </p>
-    <p>
-      <%= image_tag @legacy.photo.url %>
-    </p>
+<head><%= render 'qrcode' %></head>
+    <div class="left_column">
+      <% if @legacy.photo.present? %>
+        <%= image_tag @legacy.photo.url, size: "180x200" %><br />
+      <% else %>
+        <img src="/assets/nopic.png" height="200" width="180">
+      <% end %>
+      <strong><%= @legacy.name %></strong><br />
+      Age: <%= @legacy.age %><br />
+      Born on: <%= @legacy.born_on.strftime("%A, %B %d, %Y") %><br />
+      Passed on: <%= @legacy.passed_on.strftime("%A, %B %d, %Y") %>
+      State: <%= @legacy.state %><br />
+      <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+    </div>
+    <%= render 'memories' %>
+    <div class="content_body">
+      <strong>Who <%= @legacy.name %> was:</strong>
+      <p><%= @legacy.about %></p>
+      <%= link_to 'Edit', edit_legacy_path(@legacy) %> |
+      <%= link_to 'Back', legacies_path %>
+    </div>
+    <div class="clear"></div>
 
-    <p>
-      <strong>Age:</strong>
-      <%= @legacy.age %>
-    </p>
-
-    <p>
-      <strong>Born on:</strong>
-      <%= @legacy.born_on.strftime("%A, %B %d, %Y") %>
-    </p>
-
-    <p>
-      <strong>Passed on:</strong>
-      <%= @legacy.passed_on.strftime("%A, %B %d, %Y") %>
-    </p>
-
-    <p>
-      <strong>Country:</strong>
-      <%= @legacy.country %>
-    </p>
-
-    <p>
-      <strong>State:</strong>
-      <%= @legacy.state %>
-    </p>
-
-    <p>
-      <strong>County:</strong>
-      <%= @legacy.county %>
-    </p>
-
-    <p>
-      <strong>City:</strong>
-      <%= @legacy.city %>
-    </p>
-
-    <p>
-      <strong>About:</strong>
-      <%= @legacy.about %>
-    </p>
-    <p>
-      <strong>Created by:</strong>
-      <%= @legacy.user.name %>
-    </p>
-    <% if @legacy.memories.present? %>
-    <p>
-      <h1 align="center">Memories</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>What happened</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @legacy.memories.each do |memory| %>
-          <tr>
-            <td><%= memory.title %></td>
-            <td><%= memory.what_happened %></td>
-            <td><%= link_to 'Show', memory %></td>
-            <td><%= link_to 'Edit', edit_memory_path(memory) %></td>
-            <td><%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    </p>
-    <% end %>
-    <p>
-      <legend>Entered by:</legend>
-      <%= link_to image_tag(@legacy.user.avatar.url, size: "40x40"), @legacy.user %><br />
-      <%= @legacy.user.name %>
-    </p>
-    <%= link_to 'Edit', edit_legacy_path(@legacy) %> |
-    <%= link_to 'Back', legacies_path %>
-
-  </div>
-</div>
-
+<script type="text/javascript">
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+    width : 100,
+    height : 100
+  });
+  function makeCode () {    
+    
+    qrcode.makeCode(window.location.href);
+  }
+  makeCode();
+  $("#text").
+    on("blur", function () {
+      makeCode();
+    }).
+    on("keydown", function (e) {
+      if (e.keyCode == 13) {
+        makeCode();
+      }
+    });
+</script>

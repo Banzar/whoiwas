@@ -13,3 +13,23 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+var currentIndex = 0;
+
+var allImages = document.getElementsByTagName("img");
+
+function showImage(index) {
+  for (var i=0; i<allImages.length; i++) { 
+    var img = allImages.item(i);
+    img.className = 'hidden';
+  }
+  
+  var currentImage = allImages.item(index);
+  currentImage.className = 'showing';
+}
+
+(function slideshow() {
+  showImage(currentIndex);
+  currentIndex = (currentIndex + 1) % allImages.length;
+  setTimeout(slideshow, 5000);
+})();

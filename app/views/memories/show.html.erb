@@ -1,23 +1,23 @@
-<div class="container_body">
-	<div class="content_body">
-		<p>
-		  <strong>Title:</strong>
-		  <%= @memory.title %>
-		</p>
+<div class="content_body">
+	<p>
+	  <%= image_tag @memory.photo.url %>
+	</p>
+	<p>
+	  <strong>Title:</strong>
+	  <%= @memory.title %>
+	</p>
 
-		<p>
-		  <strong>What happened:</strong>
-		  <%= @memory.what_happened %>
-		</p>
+	<p>
+	  <strong>What happened:</strong>
+	  <%= @memory.what_happened %>
+	</p>
 
-		<p>
-		  <strong>Legacy:</strong>
-		  <%= @memory.legacy.name %>, Legacy number: <%= @memory.legacy.id %>
-		</p>
+	<p>
+	  <strong>Legacy:</strong>
+	  <%= @memory.legacy.name %>, Legacy number: <%= @memory.legacy.id %>
+	</p>
 
-		<%= link_to 'Edit', edit_memory_path(@memory) %> |
-		<%= link_to 'Back', :back %>
+	<%= link_to 'Edit', edit_memory_path(@memory) %> |
+	<%= link_to 'Back', :back %>
 
-	</div>
 </div>
-
