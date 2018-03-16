@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title><%= @user.name %>'s profile</title>
-</head>
-<body>
+
 <div class="left_column">
-	<p><%= image_tag @user.avatar.url, size: "180x200>" %></p>
+	<%= image_tag @user.avatar.url, size: "180x200" %>
 </div>
 <div class="content_body">
 	<p><%= @user.name %></p>
@@ -19,5 +14,5 @@
 
 	<%= link_to 'Back', :back %>
 </div>
-</body>
-</html>
+<div class="clear"></div>
+

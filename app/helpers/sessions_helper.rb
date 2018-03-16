@@ -56,4 +56,10 @@ module SessionsHelper
 	def store_location
 		session[:forwarding_url] = request.original_url if request.get?
 	end
+	def check_admin
+		if !current_user.admin? 
+			redirect_to legacies_path
+			flash[:notice] = "You must be an admin to do this."
+		end
+	end
 end
