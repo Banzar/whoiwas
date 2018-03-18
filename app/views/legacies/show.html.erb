@@ -6,8 +6,8 @@
         <img src="../assets/nopic.png" height="200" width="180">
       <% end %>
       <strong><%= @legacy.name.titleize %></strong><br />
-      Age: <%= @legacy.age %><br />
-      Born on: <%= @legacy.born_on.strftime("%A, %B %d, %Y") %><br />
+      Age:<br /><%= @legacy.age %><br />
+      Born on:<br /><%= @legacy.born_on.strftime("%A, %B %d, %Y") %><br />
       Passed on: <%= @legacy.passed_on.strftime("%A, %B %d, %Y") %>
       State: <%= @legacy.state %><br />
       <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
