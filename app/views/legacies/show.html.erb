@@ -3,7 +3,7 @@
       <% if @legacy.photo.present? %>
         <%= image_tag @legacy.photo.url, size: "180x200" %><br />
       <% else %>
-        <img src="/assets/nopic.png" height="200" width="180">
+        <img src="../assets/nopic.png" height="200" width="180">
       <% end %>
       <strong><%= @legacy.name.titleize %></strong><br />
       Age: <%= @legacy.age %><br />

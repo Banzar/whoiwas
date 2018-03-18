@@ -21,7 +21,7 @@
             <% if legacy.photo.present? %>
               <td><%= link_to image_tag(legacy.photo.url, size: "40x40"), legacy %></td>
             <% else %>
-              <td><a href="/legacies/<%= legacy.id %>"><img src="assets/nopic.png" height="40" width="40"></td>
+              <td><a href="/legacies/<%= legacy.id %>"><img src="../assets/nopic.png" height="40" width="40"></td>
             <% end %>
 
             <td><%= legacy.name %></td>
