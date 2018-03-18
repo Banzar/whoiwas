@@ -5,7 +5,7 @@
       <% else %>
         <img src="/assets/nopic.png" height="200" width="180">
       <% end %>
-      <strong><%= @legacy.name %></strong><br />
+      <strong><%= @legacy.name.titleize %></strong><br />
       Age: <%= @legacy.age %><br />
       Born on: <%= @legacy.born_on.strftime("%A, %B %d, %Y") %><br />
       Passed on: <%= @legacy.passed_on.strftime("%A, %B %d, %Y") %>
@@ -14,7 +14,7 @@
     </div>
     <%= render 'memories' %>
     <div class="content_body">
-      <strong>Who <%= @legacy.name %> was:</strong>
+      <strong>Who <%= @legacy.name.titleize %> was:</strong>
       <p><%= @legacy.about %></p>
       <%= link_to 'Edit', edit_legacy_path(@legacy) %> |
       <%= link_to 'Back', legacies_path %>

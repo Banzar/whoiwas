@@ -1,6 +1,6 @@
 class Legacy < ApplicationRecord
 	has_attached_file :photo
-	validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+	validates_attachment :photo, content_type: { content_type: "image/jpeg" }
 	belongs_to :user
 	has_many :memories
 

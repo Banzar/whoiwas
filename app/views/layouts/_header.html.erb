@@ -3,7 +3,10 @@
     <li><%= link_to "Home", root_path %></li>
     <li><%= link_to "Legacies", legacies_path %></li>
     <% if logged_in? %>
-      <li><%= link_to "Add Memory", new_memory_path %></li>
+      <% if current_user.try(:admin) %>
+        <li><%= link_to "Add Memory", new_memory_path %></li>
+        <li><%= link_to "Add Legacy", new_legacy_path %></li>
+      <% end %>
       <li><%= link_to "Users", users_index_path %></li>
       <li><%= link_to "Profile", current_user %></li>
       <li><%= link_to "Settings", edit_user_path(current_user) %></li>
