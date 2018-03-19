@@ -4,7 +4,6 @@
       <div class="form-inputs">
         <%= f.input :name %>
         <%= f.input :photo, as: :file %>
-        <%= f.input :age %>
         <%= f.input :born_on, as: :date, start_year: 1900, end_year: Date.today.year, order: [:month, :day, :year] %>
         <%= f.input :passed_on, as: :date, start_year: 1900, end_year: Date.today.year, order: [:month, :day, :year] %>
         <%= f.input("country", only: ["AG", "AU", "BS", "BZ", "CA", "DM", "GD", "GY", "IE", "JM", "NZ", "KN", "LC", "VC", "TT", "GB", "US"]) %>

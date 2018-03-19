@@ -11,6 +11,7 @@ class LegaciesController < ApplicationController
   # GET /legacies/1
   # GET /legacies/1.json
   def show
+    @age = age(Legacy.find(params[:id]).born_on)
   end
 
   # GET /legacies/new
@@ -25,6 +26,7 @@ class LegaciesController < ApplicationController
   # POST /legacies
   # POST /legacies.json
   def create
+    @legacy.age = age(@legacy.born_on)
     @legacy = current_user.legacies.build(legacy_params)
 
     respond_to do |format|
@@ -41,6 +43,7 @@ class LegaciesController < ApplicationController
   # PATCH/PUT /legacies/1
   # PATCH/PUT /legacies/1.json
   def update
+    @legacy.age = age(@legacy.born_on)
     respond_to do |format|
       if @legacy.update(legacy_params)
         format.html { redirect_to @legacy, notice: 'Legacy was successfully updated.' }
@@ -71,5 +74,11 @@ class LegaciesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def legacy_params
       params.require(:legacy).permit(:name, :age, :born_on, :passed_on, :country, :state, :county, :city, :about, :photo)
+    end
+
+    #Get age without entering an age, with date of birth and date of death
+    def age(dob)
+      now = Legacy.find(params[:id]).passed_on
+      now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
     end
 end
