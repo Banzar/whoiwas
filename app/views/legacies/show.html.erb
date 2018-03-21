@@ -7,15 +7,18 @@
       <% end %>
       <strong><%= @legacy.name %></strong><br />
       Age: <%= @age %><br />
-      Born on:<br /><%= @legacy.born_on.strftime("%A, %b %d, %Y") %><br />
-      Passed on:<br /><%= @legacy.passed_on.strftime("%A, %b %d, %Y") %><br />
+      Born on:<br /><%= @legacy.born_on.strftime("%a, %b %d, %Y") %><br />
+      Passed on:<br /><%= @legacy.passed_on.strftime("%a, %b %d, %Y") %><br />
       State: <%= @legacy.state %><br />
       <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
     </div>
     <%= render 'memories' %>
     <div class="content_body">
-      <strong>Who <%= @legacy.name %> was:</strong>
-      <p><%= @legacy.about %></p>
+      <% unless !@legacy.about.present? %>
+          <strong>Who <%= @legacy.name %> was:</strong>
+          <p><%= @legacy.about %></p> 
+      <% end %>
+      
       <%= link_to 'Edit', edit_legacy_path(@legacy) %> |
       <%= link_to 'Back', legacies_path %>
     </div>
