@@ -1,43 +1,44 @@
+<h1>Legacies</h1>
+<%= will_paginate(:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination-sm') %>
+<table>
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Born on</th>
+      <th>Passed on</th>
+      <th>State</th>
+      <th>About</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-    <h1>Legacies</h1>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Photo</th>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Born on</th>
-          <th>Passed on</th>
-          <th>State</th>
-          <th>About</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @legacies.each do |legacy| %>
-          <tr>
-            <% if legacy.photo.present? %>
-              <td><%= link_to image_tag(legacy.photo.url, size: "40x40"), legacy %></td>
-            <% else %>
-              <td><a href="/legacies/<%= legacy.id %>"><img src="../assets/nopic.png" height="40" width="40"></td>
-            <% end %>
-
-            <td><%= legacy.name %></td>
-            <td><%= legacy.age %></td>
-            <td><%= legacy.born_on.strftime("%m-%d-%Y") %></td>
-            <td><%= legacy.passed_on.strftime("%m-%d-%Y") %></td>
-            <td><%= legacy.state %></td>
-            <td><%= legacy.about.truncate(50) %></td>
-            <td><%= link_to 'Show', legacy %></td>
-            <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
-            <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
+  <tbody>
+    <% @legacies.each do |legacy| %>
+      <tr>
+        <% if legacy.photo.present? %>
+          <td><%= link_to image_tag(legacy.photo.url, size: "40x40"), legacy %></td>
+        <% else %>
+          <td><a href="/legacies/<%= legacy.id %>"><img src="../assets/nopic.png" height="40" width="40"></td>
         <% end %>
-      </tbody>
-    </table>
 
-    <br>
+        <td><%= legacy.name %></td>
+        <td><%= legacy.age %></td>
+        <td><%= legacy.born_on.strftime("%m-%d-%Y") %></td>
+        <td><%= legacy.passed_on.strftime("%m-%d-%Y") %></td>
+        <td><%= legacy.state %></td>
+        <td><%= legacy.about.truncate(50) %></td>
+        <td><%= link_to 'Show', legacy %></td>
+        <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
+        <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+<%= will_paginate(:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination-sm') %>
+<br>
 
-    <%= link_to 'New Legacy', new_legacy_path %>
+<%= link_to 'New Legacy', new_legacy_path %>
+<div class="clear"></div>

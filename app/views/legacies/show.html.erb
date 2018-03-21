@@ -7,8 +7,8 @@
       <% end %>
       <strong><%= @legacy.name %></strong><br />
       Age: <%= @age %><br />
-      Born on:<br /><%= @legacy.born_on.strftime("%A, %B %d, %Y") %><br />
-      Passed on:<br /><%= @legacy.passed_on.strftime("%A, %B %d, %Y") %><br />
+      Born on:<br /><%= @legacy.born_on.strftime("%A, %b %d, %Y") %><br />
+      Passed on:<br /><%= @legacy.passed_on.strftime("%A, %b %d, %Y") %><br />
       State: <%= @legacy.state %><br />
       <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
     </div>

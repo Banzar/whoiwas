@@ -1,11 +1,12 @@
 class LegaciesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   before_action :set_legacy, only: [:show, :edit, :update, :destroy]
   before_action :check_admin, only: [:new, :edit, :update, :create, :destroy]
 
   # GET /legacies
   # GET /legacies.json
   def index
-    @legacies = Legacy.all
+    @legacies = Legacy.paginate(page: params[:page], per_page: 8)
   end
 
   # GET /legacies/1
@@ -26,7 +27,6 @@ class LegaciesController < ApplicationController
   # POST /legacies
   # POST /legacies.json
   def create
-    @legacy.age = age(@legacy.born_on)
     @legacy = current_user.legacies.build(legacy_params)
 
     respond_to do |format|
