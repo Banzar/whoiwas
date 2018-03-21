@@ -78,7 +78,13 @@ class LegaciesController < ApplicationController
 
     #Get age without entering an age, with date of birth and date of death
     def age(dob)
-      now = Legacy.find(params[:id]).passed_on
-      now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+      died = Legacy.find(params[:id]).passed_on
+      now = Time.now.utc.to_date
+      if died != nil
+        died.year - dob.year - ((died.month > dob.month || (died.month == dob.month && died.day >= dob.day)) ? 0 : 1)
+      else
+        now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+      end
     end
+
 end
