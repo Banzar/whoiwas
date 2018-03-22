@@ -1,5 +1,4 @@
 class LegaciesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   before_action :set_legacy, only: [:show, :edit, :update, :destroy]
   before_action :check_admin, only: [:new, :edit, :update, :create, :destroy]
 

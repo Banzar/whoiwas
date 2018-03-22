@@ -1,4 +1,6 @@
-<head><%= render 'qrcode' %></head>
+<head><%= render 'qrcode' %>
+  <title><%= @legacy.name %>'s Legacy</title>
+</head>
     <div class="left_column">
       <% if @legacy.photo.present? %>
         <%= image_tag @legacy.photo.url, size: "180x200" %><br />
