@@ -26,7 +26,11 @@
         <td><%= legacy.name %></td>
         <td><%= legacy.age %></td>
         <td><%= legacy.born_on.strftime("%m-%d-%Y") %></td>
-        <td><%= legacy.passed_on.strftime("%m-%d-%Y") %></td>
+        <% unless legacy.passed_on == nil %>
+            <td><%= legacy.passed_on.strftime("%m-%d-%Y") %></td>
+        <% else %>
+            <td>Still Alive</td>
+        <% end %>
         <td><%= legacy.state %></td>
         <td><%= legacy.about.truncate(50) %></td>
         <td><%= link_to 'Show', legacy %></td>
