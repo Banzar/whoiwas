@@ -5,5 +5,10 @@
 		<%= user.input :email %>
 		<%= user.input :password %>
 		<%= user.input :password_confirmation %>
+		<% if current_user.try(:super?) %>
+			<%= user.input :admin %>
+			<%= user.input :moderator %>
+			<%= user.input :super %>
+		<% end %>
 		<%= user.submit %>
 	<% end %>

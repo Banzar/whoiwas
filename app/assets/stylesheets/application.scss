@@ -49,9 +49,9 @@ TD {
 	float: right;
 }
 .memories img { 
-	width: 390px; 
+	width: 400px; 
 	position: absolute; 
-	transition: opacity 1s linear; 
+	transition: opacity 2s linear; 
 	}
 .memories img.hidden { 
 	opacity: 0.0 
@@ -72,7 +72,7 @@ TD {
 }
 .container_top {
 	width:100%;
-	height: 80px;
+	height: 90px;
 	position: fixed;
 	background-color: #ffffff;
 	z-index: 99;

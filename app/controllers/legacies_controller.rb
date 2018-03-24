@@ -1,5 +1,6 @@
 class LegaciesController < ApplicationController
   before_action :set_legacy, only: [:show, :edit, :update, :destroy]
+  before_action :user_logged_in?, only: [:edit, :update, :create, :new, :destroy]
   before_action :check_admin, only: [:new, :edit, :update, :create, :destroy]
 
   # GET /legacies
@@ -17,10 +18,52 @@ class LegaciesController < ApplicationController
   # GET /legacies/new
   def new
     @legacy = current_user.legacies.build
+    if current_user.moderator
+      legacies = current_user.legacies.count
+      if legacies >= 1
+        redirect_to current_user
+        flash[:notice] = "You cannot create anymore legacies."
+        return
+      end
+    elsif current_user.moderator2
+      legacies = current_user.legacies.count
+      if legacies >= 2
+        redirect_to current_user
+        flash[:notice] = "You cannot create anymore legacies."
+        return
+      end      
+    elsif current_user.moderator3 
+      legacies = current_user.legacies.count
+      if legacies >= 3
+        redirect_to current_user
+        flash[:notice] = "You cannot create anymore legacies."
+        return
+      end
+    elsif current_user.moderator5 
+      legacies = current_user.legacies.count
+      if legacies >= 5
+        redirect_to current_user
+        flash[:notice] = "You cannot create anymore legacies."
+        return
+      end
+    elsif current_user.moderator10 
+      legacies = current_user.legacies.count
+      if legacies >= 10
+        redirect_to current_user
+        flash[:notice] = "You cannot create anymore legacies."
+        return
+      end        
+    end
   end
 
   # GET /legacies/1/edit
   def edit
+    @legacy = Legacy.find(params[:id])
+
+    unless current_user.id == @legacy.user_id || current_user.super?
+      redirect_to @legacy
+      flash[:notice] = "Cannot edit Legacies that do not belong to your account."
+    end
   end
 
   # POST /legacies
@@ -86,4 +129,11 @@ class LegaciesController < ApplicationController
       end
     end
 
+    def user_logged_in?
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_path
+      end
+    end
 end

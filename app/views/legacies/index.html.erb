@@ -1,4 +1,4 @@
-<title>See all of our Legacies</title>
+<title>Legacy Files</title>
 <h1>Legacies</h1>
 <%= will_paginate(:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination-sm') %>
 <table>
@@ -6,7 +6,6 @@
     <tr>
       <th>Photo</th>
       <th>Name</th>
-      <th>Age</th>
       <th>Born on</th>
       <th>Passed on</th>
       <th>State</th>
@@ -25,7 +24,6 @@
         <% end %>
 
         <td><%= legacy.name %></td>
-        <td><%= legacy.age %></td>
         <td><%= legacy.born_on.strftime("%m-%d-%Y") %></td>
         <% unless legacy.passed_on == nil %>
             <td><%= legacy.passed_on.strftime("%m-%d-%Y") %></td>
@@ -34,9 +32,11 @@
         <% end %>
         <td><%= legacy.state %></td>
         <td><%= legacy.about.truncate(50) %></td>
-        <td><%= link_to 'Show', legacy %></td>
-        <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
-        <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.try(:admin) %>
+          <td><%= link_to 'Show', legacy %></td>
+          <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
+          <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -46,4 +46,3 @@
 <br>
 
 <%= link_to 'New Legacy', new_legacy_path %>
-<div class="clear"></div>
