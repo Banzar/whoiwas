@@ -17,8 +17,13 @@ class LegaciesController < ApplicationController
 
   # GET /legacies/new
   def new
+    unless current_user.try(:super?)
+      if current_user.legacies.count >= current_user.legacy_count
+        flash[:notice] = "You cannot create any more legacies, without purchasing more legacy pages."
+        redirect_to current_user
+      end
+    end
     @legacy = current_user.legacies.build
-    @legacy.age = age(@legacy.born_on)
   end
 
   # GET /legacies/1/edit

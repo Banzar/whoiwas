@@ -4,7 +4,7 @@ class ChargesController < ApplicationController
 
 	def create
 	  # Amount in cents
-	  @amount = 500
+	  @amount = 8999
 
 	  customer = Stripe::Customer.create(
 	    :email => params[:stripeEmail],
@@ -17,6 +17,11 @@ class ChargesController < ApplicationController
 	    :description => 'Rails Stripe customer',
 	    :currency    => 'usd'
 	  )
+
+	  current_user.increment!(:legacy_count)
+	  current_user.save
+	  flash[:notice] = "You have purchased a legacy page."
+	  redirect_to current_user
 
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message
