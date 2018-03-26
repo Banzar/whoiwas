@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :memories
   resources :legacies
   resources :users
+  resources :charges
 end

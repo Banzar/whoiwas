@@ -18,6 +18,7 @@ class LegaciesController < ApplicationController
   # GET /legacies/new
   def new
     @legacy = current_user.legacies.build
+    @legacy.age = age(@legacy.born_on)
   end
 
   # GET /legacies/1/edit
@@ -34,6 +35,7 @@ class LegaciesController < ApplicationController
   # POST /legacies.json
   def create
     @legacy = current_user.legacies.build(legacy_params)
+
     respond_to do |format|
       if @legacy.save
         format.html { redirect_to @legacy, notice: 'Legacy was successfully created.' }
