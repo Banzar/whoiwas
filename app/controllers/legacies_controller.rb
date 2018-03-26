@@ -1,7 +1,6 @@
 class LegaciesController < ApplicationController
   before_action :set_legacy, only: [:show, :edit, :update, :destroy]
   before_action :user_logged_in?, only: [:edit, :update, :create, :new, :destroy]
-  before_action :check_admin, only: [:new, :edit, :update, :create, :destroy]
 
   # GET /legacies
   # GET /legacies.json
