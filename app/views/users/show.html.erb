@@ -12,7 +12,15 @@
 		      </div>
 		    <% end %>
 		    <label class="amount">
-		      <span><strong>You currently have <%= current_user.legacy_count %> Legacy pages.</strong> To purchase another legacy, just click the "Pay with card" button.</span>
+		    	<% if current_user.legacy_count.nil? %>
+		    		<span>
+		    			<strong>You do not have any legacy pages yet.</strong> To purchase a legacy page, it is $89.99 and you just have to click the "Pay with card" button below.
+		    		</span>
+
+		    	<% else %>
+		    		<span>
+		    		<strong>You currently have <%= current_user.legacy_count %> Legacy pages.</strong> To purchase another legacy, just click the "Pay with card" button.</span>
+		    	<% end %>
 		    </label>
 		  </article>
 
