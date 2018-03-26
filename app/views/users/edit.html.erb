@@ -16,13 +16,12 @@
 		<%= image_tag @user.avatar.url %>
 		<%= f.input :avatar, as: :file %>
 		<% if current_user.try(:super?) %>
-			<%= f.input :admin %>
-			<%= f.input :moderator %>
-			<%= f.input :moderator2 %>
-			<%= f.input :moderator3 %>
-			<%= f.input :moderator5 %>
-			<%= f.input :moderator10 %>
-			<%= f.input :super %>
+			<table>
+				<td><%= f.input :admin %></td>
+				<td><%= f.input :super %></td>			
+			</table>
+
+			<p style="color: red;"><strong>If selecting moderator, must also select admin for moderators to have correct access.</strong></p>
 		<% end %>
 		<%= f.submit %>
 	<% end %>

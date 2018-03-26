@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :user_logged_in?, only: [:update, :edit]
+
   def index
   	@users = User.paginate(page: params[:page], per_page: 4)
   end
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    unless current_user == @user || current_user.admin?
+    unless current_user == @user || current_user.super?
       flash[:notice] = "You can only edit your own profile."
       redirect_to @user
     end
@@ -40,6 +41,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
     respond_to do |format|
     if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -69,7 +71,7 @@ class UsersController < ApplicationController
 private
 
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :moderator, :moderator2, :moderator3, :moderator5, :moderator10, :admin)
+		params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :admin, :legacy_count)
 	end	
 
   def user_logged_in?

@@ -18,42 +18,6 @@ class LegaciesController < ApplicationController
   # GET /legacies/new
   def new
     @legacy = current_user.legacies.build
-    if current_user.moderator
-      legacies = current_user.legacies.count
-      if legacies >= 1
-        redirect_to current_user
-        flash[:notice] = "You cannot create anymore legacies."
-        return
-      end
-    elsif current_user.moderator2
-      legacies = current_user.legacies.count
-      if legacies >= 2
-        redirect_to current_user
-        flash[:notice] = "You cannot create anymore legacies."
-        return
-      end      
-    elsif current_user.moderator3 
-      legacies = current_user.legacies.count
-      if legacies >= 3
-        redirect_to current_user
-        flash[:notice] = "You cannot create anymore legacies."
-        return
-      end
-    elsif current_user.moderator5 
-      legacies = current_user.legacies.count
-      if legacies >= 5
-        redirect_to current_user
-        flash[:notice] = "You cannot create anymore legacies."
-        return
-      end
-    elsif current_user.moderator10 
-      legacies = current_user.legacies.count
-      if legacies >= 10
-        redirect_to current_user
-        flash[:notice] = "You cannot create anymore legacies."
-        return
-      end        
-    end
   end
 
   # GET /legacies/1/edit
@@ -70,7 +34,6 @@ class LegaciesController < ApplicationController
   # POST /legacies.json
   def create
     @legacy = current_user.legacies.build(legacy_params)
-
     respond_to do |format|
       if @legacy.save
         format.html { redirect_to @legacy, notice: 'Legacy was successfully created.' }

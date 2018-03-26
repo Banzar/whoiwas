@@ -7,10 +7,48 @@
 	<p><%= @user.email %></p>
 	<p><%= @user.created_at %></p>
 	<p><%= Time.now %></p>
+	<p>Legacy count: <%= @user.legacy_count %></p>
+	<h1>My Legacies</h1>
+	<table>
+	  <thead>
+	    <tr>
+	      <th>Photo</th>
+	      <th>Name</th>
+	      <th>Born on</th>
+	      <th>Passed on</th>
+	      <th>State</th>
+	      <th>About</th>
+	      <th colspan="3"></th>
+	    </tr>
+	  </thead>
 
-	<% if current_user %>
-		<%= current_user.name %> is the current_user... muahaha	
-	<% end %>
+	  <tbody>
+	    <% @user.legacies.each do |legacy| %>
+	      <tr>
+	        <% if legacy.photo.present? %>
+	          <td><%= link_to image_tag(legacy.photo.url, size: "40x40"), legacy %></td>
+	        <% else %>
+	          <td><a href="/legacies/<%= legacy.id %>"><img src="../assets/nopic.png" height="40" width="40"></td>
+	        <% end %>
+
+	        <td><%= legacy.name %></td>
+	        <td><%= legacy.born_on.strftime("%m-%d-%Y") %></td>
+	        <% unless legacy.passed_on == nil %>
+	            <td><%= legacy.passed_on.strftime("%m-%d-%Y") %></td>
+	        <% else %>
+	            <td>Still Alive</td>
+	        <% end %>
+	        <td><%= legacy.state %></td>
+	        <td><%= legacy.about.truncate(50) %></td>
+	        <% if current_user.try(:admin) %>
+	          <td><%= link_to 'Show', legacy %></td>
+	          <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
+	          <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	        <% end %>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
 
 	<%= link_to 'Back', :back %>
 </div>

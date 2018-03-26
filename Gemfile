@@ -14,6 +14,7 @@ gem "aws-sdk", "< 2.0"
 gem 'figaro'
 gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
+gem 'rake', '12.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 
