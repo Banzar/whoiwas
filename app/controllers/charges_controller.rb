@@ -21,7 +21,7 @@ class ChargesController < ApplicationController
 	  current_user.increment!(:legacy_count)
 	  current_user.save
 	  flash[:notice] = "You have purchased a legacy page."
-	  redirect_to current_user
+	  redirect_to new_legacy_path
 
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message
