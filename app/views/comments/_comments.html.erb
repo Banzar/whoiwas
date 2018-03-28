@@ -11,4 +11,6 @@
 </p>
 <% end %>
 
-<%= render 'comments/form' %>
+<% if current_user %>
+	<%= render 'comments/form' %>
+<% end %>
