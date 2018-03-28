@@ -4,19 +4,16 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
   get 'users/index'
-
   get 'signup', to: 'users#new'
-
   get 'users/edit' 
-
-  get 'users/show'
-
-  root 'home#index'
-  
+  get 'users/show'  
   get 'home/index'
 
+  root 'home#index'
   resources :memories
-  resources :legacies
+  resources :legacies do 
+    resources :comments
+  end
   resources :users
   resources :charges
 end

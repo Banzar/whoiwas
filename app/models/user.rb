@@ -45,4 +45,5 @@ class User < ApplicationRecord
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
+  has_many :comments
 end

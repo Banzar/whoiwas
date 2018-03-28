@@ -1,4 +1,12 @@
 
+<title>
+<% if current_user == @user %>
+	My Profile
+<% else %>
+	<%= @user.name %>'s Profile
+<% end %>
+</title>
+
 <div class="left_column">
 	<%= image_tag @user.avatar.url, size: "180x200" %>
 </div>

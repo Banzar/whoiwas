@@ -1,0 +1,5 @@
+<% @comments.each do |comment| %>
+<p><%= image_tag comment.user.avatar.url, size: "30" %><strong><%= comment.user.name %></strong>: <%= comment.content %></p>
+<% end %>
+
+<%= render 'comments/form' %>

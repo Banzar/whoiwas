@@ -1,5 +1,11 @@
 
   <div class="memories">
+    <% if current_user == @legacy.user %>
+      <% if @legacy.memories.count <= 0 %>
+        Currently your legacy has no memories. To get the legacy page to show images here, click this "New Memory" link below.<br /> 
+      <% end %>
+      <%= link_to "New Memory", new_memory_path(legacy_id: @legacy.id) %><br />
+    <% end %>
     <% if @legacy.memories.present? %>
       <% @legacy.memories.each do |memory| %>
         <td><%= image_tag memory.photo.url %></td>
@@ -24,5 +30,5 @@
             })();
           </script>
       <% end %>
-    <% end %>      
+    <% end %>
   </div>  

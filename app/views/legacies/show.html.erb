@@ -26,7 +26,8 @@
           <%= link_to 'Edit', edit_legacy_path(@legacy) %> |
       <% end %>
       <%= link_to 'Back', legacies_path %>
-      <p><strong>Legacy created by:</strong><br /><br /> <%= link_to image_tag(@legacy.user.avatar.url, size: "40x40"), @legacy.user %> <%= @legacy.user.name %></p>
+      <p><strong>Legacy created by:</strong><br /><%= link_to image_tag(@legacy.user.avatar.url, size: "40x40"), @legacy.user %> <%= @legacy.user.name %></p>
+      <%= render 'comments/comments' %>
     </div>
     <div class="clear"></div>
 <script type="text/javascript">

@@ -12,6 +12,7 @@ class LegaciesController < ApplicationController
   # GET /legacies/1.json
   def show
     @age = age(Legacy.find(params[:id]).born_on)
+    @comments = Comment.where(legacy_id: @legacy).order("created_at DESC")
   end
 
   # GET /legacies/new

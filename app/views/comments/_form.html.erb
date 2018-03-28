@@ -1,0 +1,4 @@
+<%= simple_form_for([@legacy, @legacy.comments.build]) do |f| %>
+	<%= f.text_area :content %>
+	<%= f.submit %>
+<% end %>
