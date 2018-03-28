@@ -13,7 +13,7 @@
 					<%= h comment.content %>
 				<div class="time_ago">
 					<%= time_ago_in_words comment.created_at %> ago
-						<% if comment.user == current_user %>
+						<% if comment.user == current_user || current_user.try(:super?) %>
 							<div class="button">
 								<%= link_to "Delete", [comment.legacy, comment], method: :delete %> |
 								<%= link_to "Edit", edit_legacy_comment_path(comment.legacy, comment) %>

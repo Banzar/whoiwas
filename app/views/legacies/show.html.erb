@@ -14,7 +14,9 @@
         Passed on:<br /><%= @legacy.passed_on.strftime("%a, %b %d, %Y") %><br />
       <% end %>
       State: <%= @legacy.state %><br />
+      <% if current_user == @legacy.user || current_user.try(:admin?) %>
       <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+      <% end %>
     </div>
     <%= render 'memories' %>
     <div class="content_body">
