@@ -1,5 +1,14 @@
 <% @comments.each do |comment| %>
-<p><%= image_tag comment.user.avatar.url, size: "30" %><strong><%= comment.user.name %></strong>: <%= comment.content %></p>
+<hr>
+<p>
+	<%= image_tag comment.user.avatar.url, size: "30" %><strong><%= comment.user.name %></strong>:<br /> <%= comment.content %><br />
+	<% if current_user %>
+		<% if comment.user.id == current_user.id || current_user.try(:super?) %>
+			<%= link_to "Delete", [comment.legacy, comment], method: :delete %> |
+			<%= link_to "Edit", edit_legacy_comment_path(comment.legacy, comment) %>
+		<% end %>
+	<% end %>
+</p>
 <% end %>
 
 <%= render 'comments/form' %>
