@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
 	before_action :find_legacy
 	before_action :find_comment, only: [:destroy, :edit, :update]
+	before_action :comment_owner, only: [:destroy, :edit, :update]
 	def create
 		@comment = @legacy.comments.create(params[:comment].permit(:content))
 		@comment.user_id = current_user.id
@@ -43,5 +44,12 @@ class CommentsController < ApplicationController
 
 	def find_comment
 		@comment = @legacy.comments.find(params[:id])
+	end
+
+	def comment_owner
+		unless current_user.id == @comment.user_id
+			flash[:notice] = "Must be comment owner to do this."
+			redirect_to @legacy		
+				end		
 	end
 end
