@@ -9,7 +9,7 @@ gem 'jquery'
 gem 'country_select', '~> 3.1', '>= 3.1.1'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'simple_form', '~> 3.5', '>= 3.5.1'
-gem "paperclip", "= 4.3.6" # (4.3.7 has deprecation warnings for pre-upgrade)
+gem "paperclip", "= 5.2.0" # (4.3.7 has deprecation warnings for pre-upgrade)
 gem "aws-sdk", "< 2.0"
 gem 'figaro'
 gem 'will_paginate',           '3.1.6'

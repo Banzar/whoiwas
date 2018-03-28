@@ -17,6 +17,7 @@ class MemoriesController < ApplicationController
   def new
     @memory = Memory.new
     @legacy_id = params[:legacy_id]
+    @legacy = Legacy.find(params[:legacy_id])
   end
 
   # GET /memories/1/edit
