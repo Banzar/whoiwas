@@ -223,3 +223,51 @@ input {
   float:right;
   text-align:right;
 }
+/*comment List*/
+#comment_list {
+	margin: 0px;
+	padding: 0px;
+	width: 521px;
+}
+
+#comment_list li {
+	list-style: none;
+	padding: 10px 0px;
+	margin: 0px;
+	background-color: #FFFFFF;
+	color: #000000;
+	border-bottom: 1px dashed #D2DADA;
+}
+
+#comment_list li.first {
+	border-top: 1px dashed #D2DADA;
+}
+
+#comment_list li:hover {
+	background-color: #F7F7F7;
+}
+
+#comment_list li img {
+	float: left;
+}
+
+#comment_list li div.comment_message_container {
+	float: left;
+	width: 443px;
+}
+
+#comment_list li div.comment_message_container a {
+	color: #2276BB;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#comment_list li div.comment_message_container div.time_ago {
+	color: #9C9C9C;
+	font-size: 90%;
+	padding-top: 3px;
+}
+
+#comment_list li div.comment_message_container div.time_ago div.button {
+	float: right;
+}

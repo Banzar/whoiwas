@@ -1,16 +1,31 @@
-<% @comments.each do |comment| %>
-<hr>
-<p>
-	<%= image_tag comment.user.avatar.url, size: "30" %><strong><%= comment.user.name %></strong>:<br /> <%= comment.content %><br />
-	<% if current_user %>
-		<% if comment.user.id == current_user.id || current_user.try(:super?) %>
-			<%= link_to "Delete", [comment.legacy, comment], method: :delete %> |
-			<%= link_to "Edit", edit_legacy_comment_path(comment.legacy, comment) %>
-		<% end %>
-	<% end %>
-</p>
-<% end %>
 
+
+<ul id="comment_list">
+		<% @comments.each do |comment| %>
+			<li <% if @comments.first == comment %>class="first"<% end %>>
+			<% if comment.user.avatar.file? %>
+				<%= image_tag comment.user.avatar.url, size: 30 %>
+			<% else %>
+				<img src="assets/nopic.png">
+			<% end %>
+			<div class="comment_message_container">
+					<%= link_to comment.user.name, comment.user %>
+					<%= h comment.content %>
+				<div class="time_ago">
+					<%= time_ago_in_words comment.created_at %> ago
+						<% if comment.user == current_user %>
+							<div class="button">
+								<%= link_to "Delete", [comment.legacy, comment], method: :delete %> |
+								<%= link_to "Edit", edit_legacy_comment_path(comment.legacy, comment) %>
+							</div>
+						<% end %>
+				</div>
+			</div>
+		<div class="clear"></div>
+		</li>
+	<% end %>
+</ul>
+<br />
 <% if current_user %>
 	<%= render 'comments/form' %>
 <% end %>
