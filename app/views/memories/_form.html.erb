@@ -13,17 +13,19 @@
 	<% end %>	
 </div>
 <div class="content_body2">
-    <% if current_user == @legacy.user %>
-      <% if @legacy.memories.count <= 0 %>
-        Currently your legacy has no memories.<br /> 
-      <% end %>
+    <% if current_user == @legacy.user || current_user.try(:admin?) %>
+	    <% if @legacy.memories.present? %>
+	    <h2>Current Memories</h2>
+	      <% @legacy.memories.each do |memory| %>
+	        <td><%= image_tag memory.photo.url, width: "200" %></td>
+	      <% end %>
+	    <% else %>
+	        Currently your legacy has no memories.
+	    <% end %>
+	<% else %>
+		You cannot access this legacies memories.
     <% end %>
-    <% if @legacy.memories.present? %>
-    <h2>Current Memories</h2>
-      <% @legacy.memories.each do |memory| %>
-        <td><%= image_tag memory.photo.url, width: "200" %></td>
-      <% end %>
-    <% end %>
+
 </div>
 <div class="clear"></div>
 

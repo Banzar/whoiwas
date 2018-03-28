@@ -15,9 +15,15 @@ class MemoriesController < ApplicationController
 
   # GET /memories/new
   def new
-    @memory = Memory.new
-    @legacy_id = params[:legacy_id]
-    @legacy = Legacy.find(params[:legacy_id])
+    if :legacy_id
+      @memory = Memory.new
+      @legacy_id = params[:legacy_id]
+      @legacy = Legacy.find(params[:legacy_id])
+    else
+      flash[:notice] = "Must choose to create a memory, from inside a legacy page."
+      redirect_to root_path
+    end
+
   end
 
   # GET /memories/1/edit
