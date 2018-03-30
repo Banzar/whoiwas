@@ -138,6 +138,11 @@ TD {
 }
 
 /* forms */
+#search input, textarea {
+	margin-top: 8px;
+	width: 115px;
+	float: right;
+}
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
@@ -159,12 +164,6 @@ input {
 
 .field_with_errors {
 
-}
-
-.search input, textarea {
-	margin-top: 8px;
-	width: 115px;
-	float: right;
 }
 
 /* Drop down menus */
