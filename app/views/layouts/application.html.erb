@@ -9,6 +9,13 @@
 <body>
 	<%= render 'layouts/header' %>
 	<div class="container_body"> 
+    <div class="search">
+      <%= form_tag(legacies_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Legacies", :size => 10 %>
+          <%= submit_tag "Search", :name => nil %>
+      <% end %>      
+    </div>
+
     <%= notice %>
     <%= alert %> 
 		<%= yield %>

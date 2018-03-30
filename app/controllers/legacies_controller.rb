@@ -6,6 +6,11 @@ class LegaciesController < ApplicationController
   # GET /legacies.json
   def index
     @legacies = Legacy.paginate(page: params[:page], per_page: 8)
+    if params[:search]
+      @legacies = Legacy.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 8)
+    else
+      @legacies = Legacy.paginate(page: params[:page], per_page: 8)
+    end
   end
 
   # GET /legacies/1
