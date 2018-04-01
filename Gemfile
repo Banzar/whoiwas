@@ -17,9 +17,6 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rake', '12.3.1'
 gem 'stripe'
 
-# Needed to determine what kind of device is being used.
-gem 'browser', '2.0.3'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 
