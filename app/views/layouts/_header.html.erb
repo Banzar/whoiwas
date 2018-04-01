@@ -1,20 +1,16 @@
 <div class="container_top">
   <ul>
-    <% if current_user.try(:legacy_count) || current_user.try(:super?) %>
-      <li style="text-decoration: underline; color: green"><%= link_to "Legacy", new_legacy_path %></li>
-    <% end %>
     <li><%= link_to "Home", root_path %></li>
     <li><%= link_to "Legacies", legacies_path %></li>
     <% if logged_in? %>
-      <li><%= link_to "Users", users_index_path %></li>
-      <li><%= link_to "Profile", current_user %></li>
-      <li><%= link_to "Settings", edit_user_path(current_user) %></li>
       <li><%= link_to "Log out", logout_path %></li>
     <% else %>
       <li><%= link_to "Log in", login_path %></li>
       <li><%= link_to "Sign Up", signup_path %></li>
     <% end %>
   </ul>
+    
+  <div class="clear"></div>
   <div class="title">
     <h1>Legacy Files</h1>
   </div>

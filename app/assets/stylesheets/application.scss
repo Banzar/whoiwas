@@ -72,7 +72,7 @@ TD {
 	padding-left: 5px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-top: 108px;
+	margin-top: 125px;
 	background-color: #ffffff;
 
 }
@@ -83,7 +83,7 @@ TD {
 }
 .container_top {
 	width:100%;
-	height: 110px;
+	height: 150px;
 	position: fixed;
 	background-color: #ffffff;
 	z-index: 99;
@@ -106,6 +106,32 @@ TD {
 	margin-left: 6px;
 }
 .container_top li a:hover {
+	color: #ffffff;
+	background-color: #000000;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: Tahoma;
+	margin-left: 6px;
+}
+
+.container_body ul {
+	list-style-type: none;
+}
+.container_body li {
+	display: inline;
+	float: right;
+
+}
+.container_body li a {
+	color: #000000;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: Tahoma;
+	margin-left: 6px;
+}
+.container_body li a:hover {
 	color: #ffffff;
 	background-color: #000000;
 	text-decoration: none;
@@ -141,7 +167,6 @@ TD {
 #search input, textarea {
 	width: 115px;
 	float: left;
-	margin-top: 5px;
 	margin-left: 5px;
 }
 
