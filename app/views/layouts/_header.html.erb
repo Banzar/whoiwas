@@ -1,10 +1,4 @@
 <div class="container_top">
-    <div id="search">
-      <%= form_tag(legacies_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search Legacies", :size => 10 %>
-          <%= submit_tag "Search", :name => nil %>
-      <% end %>      
-    </div>
   <ul>
     <% if current_user.try(:legacy_count) || current_user.try(:super?) %>
       <li style="text-decoration: underline; color: green"><%= link_to "Legacy", new_legacy_path %></li>
@@ -21,11 +15,16 @@
       <li><%= link_to "Sign Up", signup_path %></li>
     <% end %>
   </ul>
-    
-  <div class="clear"></div>
   <div class="title">
     <h1>Legacy Files</h1>
   </div>
+  <div id="search">
+    <%= form_tag(legacies_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Legacies", :size => 10 %>
+        <%= submit_tag "Search", :name => nil %>
+    <% end %>      
+  </div>
 </div>
+<div class="clear"></div>
 <div class="white_space"> 
 </div>
