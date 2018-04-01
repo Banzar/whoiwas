@@ -1,7 +1,10 @@
+<div class="left_column">
 <h1>Log in</h1>
 <%= simple_form_for(:session, url: login_path) do |f| %>
-	<%= f.input :email %>
-	<%= f.input :password %>
+	<%= f.input :email %><br />
+	<%= f.input :password %><br />
 	<%= f.submit "Log In" %>
 <% end %>
-<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+<p>New user? <%= link_to "Sign up now!", signup_path %></p>	
+</div>
+<div class="clear"></div>
