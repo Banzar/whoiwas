@@ -5,7 +5,11 @@ class Legacy < ApplicationRecord
 	has_many :memories
 	has_many :comments
 
+	# def self.search(search)
+	#   where("lower(name) LIKE ? OR lower(state) LIKE ? OR lower(city) LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+	# end
+
 	def self.search(search)
-	  where("lower(name) LIKE ? OR lower(state) LIKE ? OR lower(city) LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+	  where("name ILIKE ? OR state ILIKE ? OR city ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
 	end
 end
