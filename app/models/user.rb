@@ -17,9 +17,12 @@ class User < ApplicationRecord
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
 	has_many :legacies
+  has_many :comments
 
 	has_attached_file :avatar
-	
+
+
+
 	# Validate the attached image is image/jpg, image/png, etc
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
@@ -73,5 +76,8 @@ class User < ApplicationRecord
     BCrypt::Password.new(digest).is_password?(token)
   end
 
-  has_many :comments
+  # Forgets a user.
+  def forget
+    update_attribute(:remember_digest, nil)
+  end
 end

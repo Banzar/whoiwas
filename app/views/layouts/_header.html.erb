@@ -4,16 +4,13 @@
     <li><%= link_to "Legacies", legacies_path %></li>
     <% if logged_in? %>
       <li><%= link_to "Log out", logout_path %></li>
+      <li><%= link_to "Profile", current_user %></li>
+      <li><%= link_to "Settings", edit_user_path(current_user) %></li>
     <% else %>
       <li><%= link_to "Log in", login_path %></li>
       <li><%= link_to "Sign Up", signup_path %></li>
     <% end %>
   </ul>
-    
-  <div class="clear"></div>
-  <div class="title">
-    <h1>Legacy Files</h1>
-  </div>
   <div id="search">
     <%= form_tag(legacies_path, :method => "get", id: "search-form") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search Legacies", :size => 10 %>
@@ -22,5 +19,4 @@
   </div>
 </div>
 <div class="clear"></div>
-<div class="white_space"> 
-</div>
+<div class="white_space"></div>

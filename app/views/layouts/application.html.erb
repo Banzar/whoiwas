@@ -10,14 +10,6 @@
 <body>
 	<%= render 'layouts/header' %>
 	<div class="container_body">
-    <% if current_user %>
-      <li><%= link_to "Users", users_index_path %></li>
-      <li><%= link_to "Profile", current_user %></li>
-      <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-      <% if current_user.try(:legacy_count) || current_user.try(:super?) %>
-        <li style="text-decoration: underline; color: green"><%= link_to "Legacy", new_legacy_path %></li>
-      <% end %>
-    <% end %>
     <div class="clear"></div>
     <%= notice %>
     <%= alert %> 
