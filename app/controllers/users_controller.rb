@@ -16,8 +16,9 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
+      UserMailer.account_activation(@user).deliver_now
       log_in @user
-  		flash[:notice] = "Welcome to the Legacy Files"
+  		flash[:notice] = "Welcome to the Legacy Files. Please check your email to activate your account."
   		redirect_to @user
   	else
   		render 'new'
@@ -29,9 +30,9 @@ class UsersController < ApplicationController
     unless current_user == @user || current_user.super?
       flash[:notice] = "You can only edit your own profile."
       redirect_to @user
-    end
   end
 
+    end
   def update
     @user = User.find(params[:id])
 

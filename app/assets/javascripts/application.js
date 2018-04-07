@@ -14,26 +14,6 @@
 //= require turbolinks
 //= require_tree .
 
-var currentIndex = 0;
-
-var allImages = document.getElementsByTagName("img");
-
-function showImage(index) {
-  for (var i=0; i<allImages.length; i++) { 
-    var img = allImages.item(i);
-    img.className = 'hidden';
-  }
-  
-  var currentImage = allImages.item(index);
-  currentImage.className = 'showing';
-}
-
-(function slideshow() {
-  showImage(currentIndex);
-  currentIndex = (currentIndex + 1) % allImages.length;
-  setTimeout(slideshow, 5000);
-})();
-
 var countryStateInfo = {
 	"USA": {
 		"California": {
@@ -61,18 +41,18 @@ var countryStateInfo = {
 window.onload = function () {
 	
 	//Get html elements
-	var countySel = document.getElementById("countySel");
+	var countrySel = document.getElementById("countrySel");
 	var stateSel = document.getElementById("stateSel");	
 	var citySel = document.getElementById("citySel");
 	var zipSel = document.getElementById("zipSel");
 	
 	//Load countries
 	for (var country in countryStateInfo) {
-		countySel.options[countySel.options.length] = new Option(country, country);
+		countrySel.options[countrySel.options.length] = new Option(country, country);
 	}
 	
-	//County Changed
-	countySel.onchange = function () {
+	//country Changed
+	countrySel.onchange = function () {
 		 
 		 stateSel.length = 1; // remove all options bar first
 		 citySel.length = 1; // remove all options bar first
@@ -95,7 +75,7 @@ window.onload = function () {
 		 if (this.selectedIndex < 1)
 			 return; // done
 		 
-		 for (var city in countryStateInfo[countySel.value][this.value]) {
+		 for (var city in countryStateInfo[countrySel.value][this.value]) {
 			 citySel.options[citySel.options.length] = new Option(city, city);
 		 }
 	}
@@ -107,7 +87,7 @@ window.onload = function () {
 		if (this.selectedIndex < 1)
 			return; // done
 		
-		var zips = countryStateInfo[countySel.value][stateSel.value][this.value];
+		var zips = countryStateInfo[countrySel.value][stateSel.value][this.value];
 		for (var i = 0; i < zips.length; i++) {
 			zipSel.options[zipSel.options.length] = new Option(zips[i], zips[i]);
 		}

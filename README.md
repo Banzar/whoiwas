@@ -2,6 +2,8 @@
 
 Creating a place to morn those we have lost in life, and also make their life apart of a museum online.
 
+Host on heroky: https://www.mylegacyfiles.com
+
 Things you may want to cover:
 
 * Create User Models
@@ -10,5 +12,8 @@ Things you may want to cover:
 
 * Create Memory model
 
-* Will still need to add account activations for users to make so not all people can create
+* Added payments and legacy_count which is purchased
+
+
+
 
