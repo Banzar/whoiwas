@@ -17,6 +17,9 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rake', '12.3.1'
 gem 'stripe'
 
+# SEO for rails site map gem
+gem 'sitemap_generator'
+
 # Sendgrid for sending emails
 gem 'sendgrid-ruby'
 
