@@ -10,6 +10,6 @@ class Legacy < ApplicationRecord
 	# end
 
 	def self.search(search)
-	  where("name ILIKE ? OR state ILIKE ? OR city ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+	  where("name ILIKE ? OR state ILIKE ? OR city ILIKE ? OR county ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%") 
 	end
 end

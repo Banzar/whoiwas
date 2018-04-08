@@ -6,8 +6,8 @@
         <%= f.input :photo, as: :file %>
         <%= f.input :born_on, as: :date, start_year: 1700, end_year: Date.today.year, order: [:month, :day, :year] %>
         <%= f.input :passed_on, as: :date, start_year: 1700, end_year: Date.today.year, order: [:month, :day, :year] %>
-        <%= f.input("country", only: ["AG", "AU", "BS", "BZ", "CA", "DM", "GD", "GY", "IE", "JM", "NZ", "KN", "LC", "VC", "TT", "GB", "US"]) %>
-        <%= f.input :state, city_states %>
+        <%= f.input("country", only: ["AG", "AU", "BS", "BZ", "CA", "DM", "GD", "GY", "IE", "JM", "NZ", "KN", "LC", "VC", "TT", "GB", "US"], selected: ["US"], :disabled => true) %>
+        <%= f.select :state, us_states %>
         <%= f.input :county %>
         <%= f.input :city %>
         <%= f.input :about %>

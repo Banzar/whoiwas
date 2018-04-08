@@ -13,7 +13,18 @@
       <% if @legacy.passed_on.present? %>
         Passed on:<br /><%= @legacy.passed_on.strftime("%a, %b %d, %Y") %><br />
       <% end %>
-      State: <%= @legacy.state %><br />
+      <% if @legacy.country.present? %>
+        Country: <%= @legacy.country %><br />
+      <% end %>
+      <% if @legacy.state.present? %>
+        State: <%= @legacy.state %><br />
+      <% end %>
+      <% if @legacy.county.present? %>
+        County: <%= @legacy.county %><br />
+      <% end %>
+      <% if @legacy.city.present? %>
+        City: <%= @legacy.city %><br />
+      <% end %>
       <% if current_user == @legacy.user || current_user.try(:admin?) %>
       <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
       <% end %>
@@ -21,7 +32,11 @@
     <%= render 'memories' %>
     <div class="content_body">
       <% unless !@legacy.about.present? %>
-          <strong>Who <%= @legacy.name %> was:</strong>
+          <% if @legacy.passed_on.present? %>
+            <strong>Who <%= @legacy.name %> was:</strong>
+          <% else %>
+            <strong>Who <%= @legacy.name %> is:</strong>
+          <% end %>
           <p><%= @legacy.about %></p> 
       <% end %>
       <% if current_user.try(:admin?) %>

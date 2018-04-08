@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :user_logged_in?, only: [:update, :edit]
+  before_action :get_available_legacies, only: [:show]
 
   def index
   	@users = User.paginate(page: params[:page], per_page: 10)
@@ -73,6 +74,13 @@ private
       store_location
       flash[:danger] = "Please log in."
       redirect_to login_path
+    end
+  end
+
+  def get_available_legacies
+    @user = User.find(params[:id])
+    unless @user.legacy_count.nil?
+      @avalaible = @user.legacies.count - @user.legacy_count
     end
   end
 end
