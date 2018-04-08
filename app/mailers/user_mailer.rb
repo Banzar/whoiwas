@@ -21,4 +21,10 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: user.email, subject: "Password reset"
   end
+
+  def legacy_purchase(user)
+    @user = user
+    mail to: user.email, subject: "Thank you for your purchase"    
+  end
+  
 end

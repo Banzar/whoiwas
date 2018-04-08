@@ -20,6 +20,7 @@ class ChargesController < ApplicationController
 
 	  current_user.increment!(:legacy_count)
 	  current_user.save
+	  UserMailer.legacy_purchase(current_user).deliver_now
 	  flash[:notice] = "You have purchased a legacy page."
 	  redirect_to new_legacy_path
 
