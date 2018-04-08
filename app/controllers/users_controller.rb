@@ -61,6 +61,8 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @legacy_price =  "$89.99"
+    @sale_price = "Sale price: $18.00"
   end
 
 private

@@ -22,7 +22,7 @@
 		    <label class="amount">
 		    	<% if current_user.legacy_count.nil? %>
 		    		<span>
-		    			<strong>You do not have any legacy pages yet.</strong> To purchase a legacy page, it is $89.99 and you just have to click the "Pay with card" button below.
+		    			<strong>You do not have any legacy pages yet.</strong> To purchase a legacy page (<strong><%= @sale_price %></strong>), you just have to click the "Pay with card" button below.
 		    		</span>
 
 		    	<% else %>
@@ -35,7 +35,7 @@
 		  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 		          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
 		          data-description="Add Legacy to account"
-		          data-amount="8999"
+		          data-amount="1800"
 		          data-locale="auto"></script>
 		<% end %>
 	<% end %>
@@ -53,7 +53,7 @@
 		<% end %>
 			<p>You can click the "New Legacy" link below to create a new legacy.</p> 
 			<p><%= link_to 'New Legacy', new_legacy_path %></p>
-		<% else %><p>You can purchase a new legacy to create one for $89.99 by selecting the button to the right, "Pay with card".</p>
+		<% else %><p>You can purchase a new legacy to create one: <%= @legacy_price %>, but you can get it for the sale price now, which is 80% off the regular price, <strong><%= @sale_price %></strong> now by selecting the button to the right, "Pay with card".</p>
 		<% end %>
 
 		<table>

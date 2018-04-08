@@ -19,6 +19,10 @@ class MemoriesController < ApplicationController
       @memory = Memory.new
       @legacy_id = params[:legacy_id]
       @legacy = Legacy.find(params[:legacy_id])
+      if @legacy.memories.count >= 5
+        flash[:notice] = "You alrady have the max amount of memories for this legacy."
+        redirect_to current_user
+      end
     else
       flash[:notice] = "Must choose to create a memory, from inside a legacy page."
       redirect_to root_path
