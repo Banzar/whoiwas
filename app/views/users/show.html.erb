@@ -43,7 +43,12 @@
 <div class="content_body">
 	<% if current_user == @user  %>
 		<h1>My Legacies</h1>
-		<p>You currently have <%= pluralize(current_user.legacies.count, "legacy") %>. You currently have <%= pluralize(current_user.legacy_count - current_user.legacies.count, "legacy") %> available to use.</p> 
+		<p>You currently have <%= pluralize(current_user.legacies.count, "legacy") %>. 
+			<% unless @user.legacies.count.nil? || @user.legacy_count.nil? %>
+			You currently have <%= pluralize(current_user.legacy_count - current_user.legacies.count, "legacy") %> available to use.
+			<% end %>
+		</p> 
+
 		<% if current_user.legacy_count - current_user.legacies.count >= 1 %>
 			<p>You can click the "New Legacy" link below to create a new legacy.</p> 
 			<p><%= link_to 'New Legacy', new_legacy_path %></p>
