@@ -16,11 +16,11 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
+    @user.increment!(:legacy_count)
   	if @user.save
       UserMailer.account_activation(@user).deliver_now
-      log_in @user
   		flash[:notice] = "Welcome to the Legacy Files. Please check your email to activate your account."
-  		redirect_to @user
+  		redirect_to root_url
   	else
   		render 'new'
   	end
