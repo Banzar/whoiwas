@@ -2,11 +2,11 @@
 <%= simple_form_for(:session, url: login_path, multipart: true, class: "form-inline") do |f| %>
 	<%= f.input :email %><br />
 	<%= f.input :password %><br />
+	<%= link_to "(forgot password)", new_password_reset_path %>
 	<%= f.label :remember_me, class: "form-control" do %>
         <%= f.check_box :remember_me, inline_label: "Remember me" %>
         <span>Remember me on this computer</span>
       <% end %>
-	<%= link_to "(forgot password)", new_password_reset_path %>
 	<%= f.submit "Log In" %>
 <% end %>
 <p>New user? <%= link_to "Sign up now!", signup_path %></p>	
