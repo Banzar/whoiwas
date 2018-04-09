@@ -276,12 +276,12 @@ input {
 #comment_list {
 	margin: 0px;
 	padding: 0px;
-	width: 500px;
+	width: 521px;
 }
 
 #comment_list li {
 	list-style: none;
-	padding: 10px 0px;
+	padding: 10px 0px 0px 0px;
 	margin: 0px;
 	background-color: #FFFFFF;
 	color: #000000;
@@ -302,7 +302,7 @@ input {
 
 #comment_list li div.comment_message_container {
 	float: left;
-	width: 500px;
+	width: 450px;
 }
 
 #comment_list li div.comment_message_container a {
@@ -318,5 +318,10 @@ input {
 }
 
 #comment_list li div.comment_message_container div.time_ago div.button {
+	float: right;
+}
+
+#comment_list input {
+	width: 170px;
 	float: right;
 }
