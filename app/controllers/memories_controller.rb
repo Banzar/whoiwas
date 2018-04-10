@@ -19,7 +19,7 @@ class MemoriesController < ApplicationController
       @memory = Memory.new
       @legacy_id = params[:legacy_id]
       @legacy = Legacy.find(params[:legacy_id])
-      if @legacy.memories.count >= 5
+      if @legacy.memories.count >= 10
         flash[:notice] = "You alrady have the max amount of memories for this legacy."
         redirect_to current_user
       end
@@ -44,7 +44,7 @@ class MemoriesController < ApplicationController
         format.html { redirect_to @memory, notice: 'Memory was successfully created.' }
         format.json { render :show, status: :created, location: @memory }
       else
-        format.html { render :new }
+        format.html { redirect_to current_user }
         format.json { render json: @memory.errors, status: :unprocessable_entity }
       end
     end
