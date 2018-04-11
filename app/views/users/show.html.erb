@@ -50,9 +50,9 @@
 		</p> 
 		<% unless @user.legacies.count.nil? || @user.legacy_count.nil? %>
 			<% if current_user.legacy_count - current_user.legacies.count >= 1 %>
-		<% end %>
-			<p>You can click the "New Legacy" link below to create a new legacy.</p> 
-			<p><%= link_to 'New Legacy', new_legacy_path %></p>
+				<p>You can click the "New Legacy" link below to create a new legacy.</p> 
+				<p><%= link_to 'New Legacy', new_legacy_path %></p>
+			<% end %>
 		<% else %><p>You can purchase a new legacy to create one: <%= @legacy_price %>, but you can get it for the sale price now, which is 80% off the regular price, <strong><%= @sale_price %></strong> now by selecting the button to the right, "Pay with card".</p>
 		<% end %>
 

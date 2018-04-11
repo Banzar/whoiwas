@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user.increment!(:legacy_count)
   	if @user.save
       UserMailer.account_activation(@user).deliver_now
-  		flash[:notice] = "Welcome to the Legacy Files. Please check your email to activate your account."
+  		flash[:notice] = "Thank you for signing up at Legacy Files. Please check your email to activate your account."
   		redirect_to root_url
   	else
   		render 'new'
