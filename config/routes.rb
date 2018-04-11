@@ -1,17 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'instructions/index'
-
-  get 'instructions/legacies'
-
-  get 'instructions/memories'
-
-  get 'instructions/accounts'
-
+  get 'help', to: 'instructions#index'
+  get 'help/legacies', to: 'instructions#legacies'
+  get 'help/memories', to: 'instructions#memories'
+  get 'help/accounts', to: 'instructions#accounts'
   get 'password_resets/new'
-
   get 'password_resets/edit'
-
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
@@ -30,4 +24,5 @@ Rails.application.routes.draw do
   resources :charges
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :instructions
 end

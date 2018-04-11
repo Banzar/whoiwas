@@ -122,8 +122,6 @@ TD {
 	list-style-type: none;
 }
 .container_body li {
-	display: inline;
-	float: right;
 
 }
 .container_body li a {
@@ -174,8 +172,8 @@ TD {
 /* forms */
 #search input, textarea {
 	width: 115px;
-	float: right;
-	margin-right: 10px;
+	float: left;
+	margin-left: 5px;
 }
 
 .comment_list input, textarea, select, .uneditable-input {
