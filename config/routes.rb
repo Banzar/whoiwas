@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'instructions/index'
+
+  get 'instructions/legacies'
+
+  get 'instructions/memories'
+
+  get 'instructions/accounts'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -13,7 +21,7 @@ Rails.application.routes.draw do
   get 'users/show'  
   get 'home/index'
 
-  root 'home#index'
+  root 'legacies#index'
   resources :memories
   resources :legacies do 
     resources :comments

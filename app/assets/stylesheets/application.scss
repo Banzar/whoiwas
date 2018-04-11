@@ -17,6 +17,7 @@
 BODY {
 	background-color: #f9f9f9;
 	font-family: souvenir;
+	font-size: 16px;
 }
 
 TH {
@@ -82,11 +83,6 @@ TD {
 	margin-top: 55px;
 	background-color: #ffffff;
 
-}
-.container_body H1 {
-	size: 50px;
-	color: #A2D9CE;
-	font-family: Courier New;
 }
 .container_top {
 	width:100%;
@@ -169,6 +165,7 @@ TD {
 
 .column_right {
 	float: right;
+	width: 650px;
 }
 .white_space {
 	height: 33px;
@@ -177,8 +174,8 @@ TD {
 /* forms */
 #search input, textarea {
 	width: 115px;
-	float: left;
-	margin-left: 5px;
+	float: right;
+	margin-right: 10px;
 }
 
 .comment_list input, textarea, select, .uneditable-input {
@@ -187,10 +184,6 @@ TD {
   margin-bottom: 15px;
   margin-left: 0px;
   margin-top: 5px;
-}
-
-#remember_me input {
-	float: left;
 }
 
 input {
