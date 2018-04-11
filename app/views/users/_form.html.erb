@@ -10,5 +10,5 @@
 			<%= user.input :moderator %>
 			<%= user.input :super %>
 		<% end %>
-		<%= user.submit %>
+		<%= user.submit "Create Account", :onclick => "alert('Activation email has been sent, please activate your account to be able to log in.')" %>
 	<% end %>

@@ -5,6 +5,7 @@ class User < ApplicationRecord
   before_create :create_activation_digest
 
 	validates :name, presence: true, length: {maximum: 50}
+  validates :avatar, presence: true
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

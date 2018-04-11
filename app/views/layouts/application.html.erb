@@ -9,9 +9,15 @@
   </head>
 <body>
 	<%= render 'layouts/header' %>
+    <div id="search">
+      <%= form_tag(legacies_path, :method => "get", id: "search-form") do %>
+          <%= submit_tag "Search", :name => nil %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Legacies", :size => 10 %>
+      <% end %>      
+    </div><div class="clear"></div>
 	<div class="container_body">
-    <%= notice %>
-    <%= alert %>
+    <p><%= notice %></p>
+    <p style="color: red;"><%= alert %></p>
 		<%= yield %>
 	</div>
 </body>
