@@ -3,7 +3,7 @@
 </head>
     <div class="left_column">
       <% if @legacy.photo.present? %>
-        <%= image_tag @legacy.photo.url, size: "180x200>" %><br />
+        <%= image_tag @legacy.photo.url, size: "180x200" %><br />
       <% else %>
         <img src="../assets/nopic.png" height="200" width="180">
       <% end %>
