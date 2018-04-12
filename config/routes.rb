@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  get 'help/contact_us', to: 'assist_messages#new'
   get 'help', to: 'instructions#index'
   get 'help/legacies', to: 'instructions#legacies'
   get 'help/memories', to: 'instructions#memories'
@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :instructions
+  resources :assist_messages
 end

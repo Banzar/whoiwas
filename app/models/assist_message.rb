@@ -1,0 +1,2 @@
+class AssistMessage < ApplicationRecord
+end

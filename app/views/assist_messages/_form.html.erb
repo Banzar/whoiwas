@@ -1,0 +1,24 @@
+
+<%= simple_form_for(@assist_message) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <% if logged_in? %>
+      <%= f.label :email %><br />
+      <%= f.text_field :email, :value => current_user.email  %><br /><br />
+    <% else %>
+      <%= f.input :email %>
+    <% end %>
+    <%= f.input :subject %>
+    <%= f.label :content %>
+    <%= f.text_area :content %><br />
+    <% if current_user.try(:admin?) %>
+      <%= f.check_box :completed %>
+      <%= f.label :completed %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Send Message" %>
+  </div>
+<% end %>

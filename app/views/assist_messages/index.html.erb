@@ -1,0 +1,57 @@
+<h1>Assist Messages</h1>
+
+<h3>Waiting for completion</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Subject</th>
+      <th>Content</th>
+      <th>Completed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @helps.each do |assist_message| %>
+      <tr>
+        <td><%= assist_message.email %></td>
+        <td><%= assist_message.subject %></td>
+        <td><%= assist_message.content %></td>
+        <td><%= assist_message.completed %></td>
+        <td><%= link_to 'Show', assist_message %></td>
+        <td><%= link_to 'Edit', edit_assist_message_path(assist_message) %></td>
+        <td><%= link_to 'Destroy', assist_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr>
+<br>
+
+<h3>Completed Messages</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Subject</th>
+      <th>Content</th>
+      <th>Completed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assist_messages.each do |assist_message| %>
+      <tr>
+        <td><%= assist_message.email %></td>
+        <td><%= assist_message.subject %></td>
+        <td><%= assist_message.content %></td>
+        <td><%= assist_message.completed %></td>
+        <td><%= link_to 'Show', assist_message %></td>
+        <td><%= link_to 'Edit', edit_assist_message_path(assist_message) %></td>
+        <td><%= link_to 'Destroy', assist_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,22 @@
+<p>
+  <strong>Email:</strong>
+  <%= @assist_message.email %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @assist_message.subject %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @assist_message.content %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @assist_message.completed %>
+</p>
+
+<%= link_to 'Edit', edit_assist_message_path(@assist_message) %> |
+<%= link_to 'Back', assist_messages_path %>
