@@ -10,11 +10,11 @@
     <% else %>
       <%= f.input :email %>
     <% end %>
-    <%= f.input :subject %>
+    <%= f.text_area :subject %>
     <%= f.label :content %>
     <%= f.text_area :content %><br />
     <% if current_user.try(:admin?) %>
-      <%= f.input :solution %>
+      <%= f.text_area :solution %><br>
       <%= f.check_box :completed %>
       <span>I have reviewed and solved this issue.</span>
     <% end %>
