@@ -10,17 +10,16 @@
     <% else %>
       <%= f.input :email %>
     <% end %>
-    <%= f.text_area :subject %>
-    <%= f.label :content %>
-    <%= f.text_area :content %><br />
+    <%= f.input :subject %>
+    <%= f.input :content %>
     <% if current_user.try(:admin?) %>
-      <%= f.text_area :solution %><br>
+      <%= f.input :solution %><br>
       <%= f.check_box :completed %>
       <span>I have reviewed and solved this issue.</span>
     <% end %>
   </div>
 
   <div class="form-actions">
-    <%= f.submit "Send Message" %>
+    <%= f.submit "Submit" %>
   </div>
 <% end %>
