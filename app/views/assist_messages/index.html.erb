@@ -1,59 +1,76 @@
 <title>Assistance Page</title>
+<% if current_user.try(:admin?) %>
+  <h1>Assist Messages</h1>
 
-<h1>Assist Messages</h1>
-
-<h3>Waiting for completion</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Subject</th>
-      <th>Content</th>
-      <th>Completed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @helps.each do |assist_message| %>
+  <h3>Waiting for completion</h3>
+  <% if @helps.present? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= assist_message.email %></td>
-        <td><%= assist_message.subject %></td>
-        <td><%= assist_message.content %></td>
-        <td><%= assist_message.completed %></td>
-        <td><%= link_to 'Show', assist_message %></td>
-        <td><%= link_to 'Edit', edit_assist_message_path(assist_message) %></td>
-        <td><%= link_to 'Destroy', assist_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Content</th>
+        <th>Completed</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<hr>
-<br>
+    </thead>
 
-<h3>Completed Messages</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Subject</th>
-      <th>Content</th>
-      <th>Completed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <tbody>
+      <% @helps.each do |assist_message| %>
+        <tr>
+          <td><%= assist_message.user.name %></td>
+          <td><%= assist_message.email %></td>
+          <td><%= assist_message.subject %></td>
+          <td><%= assist_message.content %></td>
+          <td><%= assist_message.completed %></td>
+          <td><%= link_to 'Show', assist_message %></td>
+          <td><%= link_to 'Edit', edit_assist_message_path(assist_message) %></td>
+          <td><%= link_to 'Destroy', assist_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <p>There is currently nobody that needs assistance.</p>
+  <% end %>
+  <hr>
+  <br>
 
-  <tbody>
-    <% @assist_messages.each do |assist_message| %>
+  <h3>Completed Messages</h3>
+  <% if @helped.present? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= assist_message.email %></td>
-        <td><%= assist_message.subject %></td>
-        <td><%= assist_message.content %></td>
-        <td><%= assist_message.completed %></td>
-        <td><%= link_to 'Show', assist_message %></td>
-        <td><%= link_to 'Edit', edit_assist_message_path(assist_message) %></td>
-        <td><%= link_to 'Destroy', assist_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Content</th>
+        <th>Completed</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @helped.each do |assist_message| %>
+        <tr>
+          <td><%= assist_message.user.name %></td>
+          <td><%= assist_message.email %></td>
+          <td><%= assist_message.subject %></td>
+          <td><%= assist_message.content %></td>
+          <td><%= assist_message.completed %></td>
+          <td><%= link_to 'Show', assist_message %></td>
+          <td><%= link_to 'Edit', edit_assist_message_path(assist_message) %></td>
+          <td><%= link_to 'Destroy', assist_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <p>There are currently no assist messages.</p>
+  <% end %>
+<% elsif @unread.present? %>
+  <% @unread.each do |message| %>
+    <%= link_to message.subject, message %>
+  <% end %>
+<% end %>

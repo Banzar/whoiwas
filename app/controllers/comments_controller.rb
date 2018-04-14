@@ -50,6 +50,6 @@ class CommentsController < ApplicationController
 		unless current_user.id == @comment.user_id || current_user.try(:super?)
 			flash[:notice] = "Must be comment owner to do this."
 			redirect_to @legacy		
-				end		
+		 end		
 	end
 end

@@ -4,20 +4,12 @@ class AssistMessagesController < ApplicationController
   # GET /assist_messages
   # GET /assist_messages.json
   def index
-    unless current_user.try(:admin?)
-      flash[:alert] = "Account unable to access requested loction."
-      redirect_to help_path
-    end
     @assist_messages = AssistMessage.all
   end
-
   # GET /assist_messages/1
   # GET /assist_messages/1.json
   def show
-    unless current_user.try(:admin?)
-      flash[:alert] = "Account unable to access requested loction."
-      redirect_to help_path
-    end
+
   end
 
   # GET /assist_messages/new
@@ -36,7 +28,11 @@ class AssistMessagesController < ApplicationController
   # POST /assist_messages
   # POST /assist_messages.json
   def create
-    @assist_message = AssistMessage.new(assist_message_params)
+    if logged_in?
+      @assist_message = current_user.assist_messages.build(assist_message_params)
+    else
+      @assist_message = User.first.assist_messages.build(assist_message_params)
+    end
 
     respond_to do |format|
       if @assist_message.save
@@ -52,10 +48,6 @@ class AssistMessagesController < ApplicationController
   # PATCH/PUT /assist_messages/1
   # PATCH/PUT /assist_messages/1.json
   def update
-    unless current_user.try(:admin?)
-      flash[:alert] = "Unable to access requested location."
-      redirect_to help_path
-    end
     respond_to do |format|
       if @assist_message.update(assist_message_params)
         format.html { redirect_to @assist_message, notice: 'Assist message was successfully updated.' }
@@ -89,6 +81,6 @@ class AssistMessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assist_message_params
-      params.require(:assist_message).permit(:email, :subject, :content, :completed)
+      params.require(:assist_message).permit(:email, :subject, :content, :completed, :solution, :read)
     end
 end

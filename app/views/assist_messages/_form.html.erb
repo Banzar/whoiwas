@@ -14,8 +14,9 @@
     <%= f.label :content %>
     <%= f.text_area :content %><br />
     <% if current_user.try(:admin?) %>
+      <%= f.input :solution %>
       <%= f.check_box :completed %>
-      <%= f.label :completed %>
+      <span>I have reviewed and solved this issue.</span>
     <% end %>
   </div>
 

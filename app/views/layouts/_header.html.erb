@@ -12,7 +12,10 @@
       <% if current_user.try(:admin?) && @helps.present? %>
         <li><%= link_to "Contact(#{@helps_count})", assist_messages_path %></li>
       <% else %>
-          <li><%= link_to "Contact", new_assist_message_path %> </li>
+        <li><%= link_to "Contact", new_assist_message_path %> </li>
+        <% if @unread.present? %>
+          <li style="color: red;"><%= link_to "Ticket(#{@unread.count})", assist_messages_path %></li>
+        <% end %>
       <% end %>
     <% else %>
       <li style="float: left;"><%= link_to "Sign Up", signup_path %></li>

@@ -18,5 +18,20 @@
   <%= @assist_message.completed %>
 </p>
 
+<% if @assist_message.solution.present? %>
+	<p><%= @assist_message.solution %></p>
+<% end %>
+
+<% if @assist_message.read == false && @assist_message.solution.present? && @assist_message.completed == true %>
+	<%= form_for(@assist_message) do |f| %>
+		<%= f.check_box :read %>
+		<span>I acknowledge that I have read the reply</span><br />
+    <p style="color: red;">This has been completed already, if all questions have not been answered, please submit a new request.</p>
+		<%= f.submit "Submit" %><br /><br>
+	<% end %>
+<% end %>
+
+<% unless @assist_message.completed == true %>
 <%= link_to 'Edit', edit_assist_message_path(@assist_message) %> |
+<% end %>
 <%= link_to 'Back', assist_messages_path %>

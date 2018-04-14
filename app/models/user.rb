@@ -19,6 +19,7 @@ class User < ApplicationRecord
 
 	has_many :legacies
   has_many :comments
+  has_many :assist_messages
 
 	has_attached_file :avatar
 

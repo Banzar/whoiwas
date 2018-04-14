@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412020757) do
+ActiveRecord::Schema.define(version: 20180412073626) do
 
   create_table "assist_messages", force: :cascade do |t|
     t.string "email"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 20180412020757) do
     t.boolean "completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.text "solution"
+    t.boolean "read", default: false
   end
 
   create_table "comments", force: :cascade do |t|
