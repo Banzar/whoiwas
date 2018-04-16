@@ -17,6 +17,12 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rake', '12.3.1'
 gem 'stripe'
 
+gem 'bootstrap-social-rails'
+gem "font-awesome-rails"
+
+# Social media links
+gem 'social-share-button'
+
 # SEO for rails site map gem
 gem 'sitemap_generator'
 

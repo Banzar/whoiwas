@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-5747721026724829",
+        enable_page_level_ads: true
+      });
+    </script>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -8,6 +15,14 @@
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   </head>
 <body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 	<%= render 'layouts/header' %>
     <div id="search">
       <%= form_tag(legacies_path, :method => "get", id: "search-form") do %>
@@ -20,5 +35,10 @@
     <p style="color: red;"><%= alert %></p>
 		<%= yield %>
 	</div>
+  <div class="footer">
+    <%= render 'layouts/footer' %>
+  </div>
+  <div class="clear"></div>
+  <% debug(params) if Rails.env.development? %>
 </body>
 </html>

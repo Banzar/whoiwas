@@ -11,7 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  */
-
+@import "font-awesome";
 @import "bootstrap";
 
 BODY {
@@ -80,14 +80,15 @@ TD {
 	padding-left: 5px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-top: 70px;
+	margin-top: 40px;
+	margin-bottom: 45px;
 	background-color: #ffffff;
 
 }
 
 .container_top {
 	width:100%;
-	height: 55px;
+	height: 33px;
 	position: fixed;
 	background-color: #ffffff;
 	z-index: 99;
@@ -121,8 +122,7 @@ TD {
 	color: #000000;
 	text-decoration: none;
 	font-weight: bold;
-	font-size: 16px;
-	font-family: Tahoma;
+	font-size: 14px;
 	margin-left: 6px;
 }
 .container_body li a:hover {
@@ -130,9 +130,58 @@ TD {
 	background-color: #000000;
 	text-decoration: none;
 	font-weight: bold;
-	font-size: 16px;
-	font-family: Tahoma;
+	font-size: 14px;
 	margin-left: 6px;
+}
+
+
+/* Begin footers */
+/*
+footer {
+	background-color: #ffffff;
+	z-index: 1;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+	width: 100%;
+	height: 40px;
+}
+
+footer .copyright {
+    float: left;
+}
+
+footer .copyright a {
+    float: left;
+    text-decoration: none;
+    color: #000000;
+    margin-left: 15px;
+}
+
+footer ul {
+	list-style-type: none;
+	margin-right: 25px;
+}
+
+footer li a {
+	color: #000000;
+	text-decoration: none;
+	font-size: 14px;
+	margin-left: 6px;
+	float: right;
+}
+
+footer li a:hover {
+	text-decoration: underline;
+	color: #000000;
+}
+*/
+/*End Footers*/
+
+footer li a {
+	color: #000000;
+	text-decoration: none;
+	font-size: 14px;
 }
 
 .debug_dump {
@@ -172,7 +221,6 @@ TD {
 	width: 115px;
 	float: left;
 	margin-left: 5px;
-	margin-top: 30px;
 }
 
 .comment_list input, textarea, select, .uneditable-input {

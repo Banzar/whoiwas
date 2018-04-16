@@ -1,18 +1,13 @@
 <div class="container_top">
   <ul>
     <li><%= link_to "Home", root_path %></li>
-    <li><%= link_to "Help", help_path %></li>
-    <% if !logged_in? %>
-      <li><%= link_to "Contact", new_assist_message_path %></li>
-    <% end %>
     <% if logged_in? %>
       <li style="float: left;"><%= link_to "Log out", logout_path %></li>
       <li style="float: left;"><%= link_to "Settings", edit_user_path(current_user) %></li>
       <li style="float: left;"><%= link_to "Profile", current_user %></li>
       <% if current_user.try(:admin?) && @helps.present? %>
-        <li><%= link_to "Contact(#{@helps_count})", assist_messages_path %></li>
+        <li><%= link_to "Help(#{@helps_count})", assist_messages_path %></li>
       <% else %>
-        <li><%= link_to "Contact", new_assist_message_path %> </li>
         <% if @unread.present? %>
           <li style="color: red;"><%= link_to "Ticket(#{@unread.count})", assist_messages_path %></li>
         <% end %>
