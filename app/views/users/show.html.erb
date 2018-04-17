@@ -17,6 +17,14 @@
 
 <div class="left_column">
 	<%= image_tag @user.avatar.url, size: "180x200" %>
+	<br>
+	<% if current_user.try(:admin?) %>
+		<% if @user.activated? %>
+			<strong>Activated</strong>
+		<% else %>
+			<strong>Not Activated</strong>
+		<% end %>
+	<% end %>
 </div>
 <div class="memories">
 	<% if current_user == @user %>
