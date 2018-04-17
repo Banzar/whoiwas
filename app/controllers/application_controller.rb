@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :assistance_needed
+
   include SessionsHelper
 
   def assistance_needed
@@ -15,4 +16,5 @@ class ApplicationController < ActionController::Base
 	  	end
 	  end
   end
+
 end

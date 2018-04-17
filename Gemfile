@@ -17,8 +17,6 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rake', '12.3.1'
 gem 'stripe'
 
-# Setting up Cron Jobs with whenever
-gem 'whenever', require: false
 
 gem 'bootstrap-social-rails'
 gem "font-awesome-rails"

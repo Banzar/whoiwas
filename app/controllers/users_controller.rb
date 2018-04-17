@@ -63,6 +63,10 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
     @legacy_price =  "$89.99"
     @sale_price = "Sale price: $18.00"
+    if current_user.try(:super?)
+      @unactivated = User.where('activated = ?', false)
+      @unactivated_expired = @unactivated.where('date(created_at) <= ?', 3.days.ago)
+    end 
   end
 
 private
