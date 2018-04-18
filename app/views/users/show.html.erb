@@ -16,7 +16,11 @@
 </title>
 
 <div class="left_column">
-	<%= image_tag @user.avatar.url, size: "180x200" %>
+	<% if @user.avatar.present? %>
+		<%= image_tag @user.avatar.url, size: "180x200" %>
+	<% else %>
+		<img src="assets/nopic.png" height="200" width="180" />
+	<% end %>
 	<br>
 	<% if current_user.try(:admin?) %>
 		<% if @user.activated? %>
