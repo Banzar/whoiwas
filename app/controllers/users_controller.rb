@@ -1,3 +1,4 @@
+
 class UsersController < ApplicationController
   before_action :user_logged_in?, only: [:update, :edit]
   before_action :get_available_legacies, only: [:show]

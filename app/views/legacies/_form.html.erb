@@ -1,26 +1,17 @@
-<head>  
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-5747721026724829",
-      enable_page_level_ads: true
-    });
-  </script>
-</head>
-    <%= simple_form_for(@legacy) do |f| %>
-      <%= f.error_notification %>
-        <%= f.input :name %>
-        <%= f.input :photo, as: :file %>
-         <%= f.input :born_on, as: :date, start_year: 1700, end_year: Date.today.year, order: [:month, :day, :year] %>
-         <%= f.input :passed_on, as: :date, start_year: 1700, end_year: Date.today.year, order: [:month, :day, :year] %>
-        <%= f.input("country", only: ["AG", "AU", "BS", "BZ", "CA", "DM", "GD", "GY", "IE", "JM", "NZ", "KN", "LC", "VC", "TT", "GB", "US"], selected: ["US"], :disabled => true) %>
-        <%= f.label :state %>
-        <%= f.select :state, us_states %>
-        <%= f.input :county %>
-        <%= f.input :city %>
-        <%= f.input :about %>
+<%= simple_form_for(@legacy) do |f| %>
+  <%= f.error_notification %>
+    <%= f.input :name %>
+    <%= f.input :photo, as: :file %>
+     <%= f.input :born_on, as: :date, start_year: 1700, end_year: Date.today.year, order: [:month, :day, :year] %>
+     <%= f.input :passed_on, as: :date, start_year: 1700, end_year: Date.today.year, order: [:month, :day, :year] %>
+    <%= f.input("country", only: ["AG", "AU", "BS", "BZ", "CA", "DM", "GD", "GY", "IE", "JM", "NZ", "KN", "LC", "VC", "TT", "GB", "US"], selected: ["US"], :disabled => true) %>
+    <%= f.label :state %>
+    <%= f.select :state, us_states %>
+    <%= f.input :county %>
+    <%= f.input :city %>
+    <%= f.input :about %>
 
-      <div class="form-actions">
-        <%= f.button :submit %>
-      </div>
-    <% end %>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
