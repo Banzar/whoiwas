@@ -62,7 +62,7 @@ TD {
 	float: right;
 }
 .memories img { 
-	width: 400px; 
+	width: 380px; 
 	position: absolute; 
 	transition: opacity 1s linear; 
 	}
@@ -321,7 +321,7 @@ input {
 #comment_list {
 	margin: 0px;
 	padding: 0px;
-	width: 521px;
+	width: 100%;
 }
 
 #comment_list li {
@@ -347,7 +347,7 @@ input {
 
 #comment_list li div.comment_message_container {
 	float: left;
-	width: 450px;
+	width: 90%;
 }
 
 #comment_list li div.comment_message_container a {
