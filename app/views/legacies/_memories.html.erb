@@ -1,4 +1,5 @@
   <div class="memories">
+    <div class="col-sm-3">
     <% if current_user == @legacy.user %>
       <% if @legacy.memories.count <= 0 %>
         Currently your legacy has no memories. To get the legacy page to show images here, click this "New Memory" link below.<br /> 
@@ -25,9 +26,11 @@
             (function slideshow() {
               showImage(currentIndex);
               currentIndex = (currentIndex + 1) % allImages.length;
-              setTimeout(slideshow, 9000);
+              setTimeout(slideshow, 10000);
             })();
           </script>
       <% end %>
     <% end %>
-  </div>  
+  </div>
+</div>  
+<div class="clear"></div>

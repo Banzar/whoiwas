@@ -1,77 +1,78 @@
 <head><%= render 'qrcode' %>
   <title><%= @legacy.name %>'s Legacy</title>
 </head>
-    <div class="left_column">
-      <% if @legacy.photo.present? %>
-        <%= image_tag @legacy.photo.url, size: "180x200" %><br />
-      <% else %>
-        <img src="../assets/nopic.png" height="200" width="180">
-      <% end %>
-      <strong><%= @legacy.name %></strong><br />
-      Age: <%= @age %><br />
-      Born on:<br /><%= @legacy.born_on.strftime("%a, %b %d, %Y") %><br />
-      <% if @legacy.passed_on.present? %>
-        Passed on:<br /><%= @legacy.passed_on.strftime("%a, %b %d, %Y") %><br />
-      <% end %>
-      <% if @legacy.country.present? %>
-        Country: <%= @legacy.country %><br />
-      <% end %>
-      <% if @legacy.state.present? %>
-        State: <%= @legacy.state %><br />
-      <% end %>
-      <% if @legacy.county.present? %>
-        County: <%= @legacy.county %><br />
-      <% end %>
-      <% if @legacy.city.present? %>
-        City: <%= @legacy.city %><br />
-      <% end %>
-      <% if current_user == @legacy.user || current_user.try(:admin?) %>
-      <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
-      <% end %>
-    </div>
-    <%= render 'memories' %>
-    <div class="content_body">
-      <% unless !@legacy.about.present? %>
-          <% if @legacy.passed_on.present? %>
-            <strong>Who <%= @legacy.name %> was:</strong>
-          <% else %>
-            <strong>Who <%= @legacy.name %> is:</strong>
-          <% end %>
-          <p><%= @legacy.about %></p> 
-      <% end %>
-      <% if current_user.try(:admin?) %>
-          <%= link_to 'Edit', edit_legacy_path(@legacy) %> |
-      <% end %>
-      <%= link_to 'Back', legacies_path %>
-      <p>
-        <strong>Legacy created by:</strong><br />
-        <% if @legacy.user.avatar.present? %>
-          <td><%= image_tag @legacy.user.avatar.url, size: 40 %></td>
+    <div class="row">
+      <div class="col-sm-3">
+        <% if @legacy.photo.present? %>
+          <%= image_tag @legacy.photo.url, size: "180x200" %><br />
         <% else %>
-          <td><img src="/assets/nopic.png" height="40" width="40" /></td>
+          <img src="../assets/nopic.png" height="200" width="180">
         <% end %>
-        <%= link_to @legacy.user.name, @legacy.user %>
-      </p>
-      <%= render 'comments/comments' %>
-    </div>
-    <div class="clear"></div>
-<script type="text/javascript">
-  var qrcode = new QRCode(document.getElementById("qrcode"), {
-    width : 100,
-    height : 100
-  });
-  function makeCode () {    
-    
-    qrcode.makeCode(window.location.href);
-  }
-  makeCode();
-  $("#text").
-    on("blur", function () {
-      makeCode();
-    }).
-    on("keydown", function (e) {
-      if (e.keyCode == 13) {
-        makeCode();
-      }
+        <strong><%= @legacy.name %></strong><br />
+        Age: <%= @age %><br />
+        Born on:<br /><%= @legacy.born_on.strftime("%a, %b %d, %Y") %><br />
+        <% if @legacy.passed_on.present? %>
+          Passed on:<br /><%= @legacy.passed_on.strftime("%a, %b %d, %Y") %><br />
+        <% end %>
+        <% if @legacy.country.present? %>
+          Country: <%= @legacy.country %><br />
+        <% end %>
+        <% if @legacy.state.present? %>
+          State: <%= @legacy.state %><br />
+        <% end %>
+        <% if @legacy.county.present? %>
+          County: <%= @legacy.county %><br />
+        <% end %>
+        <% if @legacy.city.present? %>
+          City: <%= @legacy.city %><br />
+        <% end %>
+        <% if current_user == @legacy.user || current_user.try(:admin?) %>
+        <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+        <% end %>
+      </div>
+      <%= render 'memories' %>
+      <div class="col-sm-6">
+        <% unless !@legacy.about.present? %>
+            <% if @legacy.passed_on.present? %>
+              <strong>Who <%= @legacy.name %> was:</strong>
+            <% else %>
+              <strong>Who <%= @legacy.name %> is:</strong>
+            <% end %>
+            <p><%= @legacy.about %></p> 
+        <% end %>
+        <% if current_user.try(:admin?) %>
+            <%= link_to 'Edit', edit_legacy_path(@legacy) %> |
+        <% end %>
+        <%= link_to 'Back', legacies_path %>
+        <p>
+          <strong>Legacy created by:</strong><br />
+          <% if @legacy.user.avatar.present? %>
+            <td><%= image_tag @legacy.user.avatar.url, size: 40 %></td>
+          <% else %>
+            <td><img src="/assets/nopic.png" height="40" width="40" /></td>
+          <% end %>
+          <%= link_to @legacy.user.name, @legacy.user %>
+        </p>
+        <%= render 'comments/comments' %>
+      </div>
+  <script type="text/javascript">
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+      width : 100,
+      height : 100
     });
-</script>
+    function makeCode () {    
+      
+      qrcode.makeCode(window.location.href);
+    }
+    makeCode();
+    $("#text").
+      on("blur", function () {
+        makeCode();
+      }).
+      on("keydown", function (e) {
+        if (e.keyCode == 13) {
+          makeCode();
+        }
+      });
+  </script>
+    </div>

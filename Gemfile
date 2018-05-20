@@ -5,9 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'jquery'
+gem 'jquery-rails'
 gem 'country_select', '~> 3.1', '>= 3.1.1'
-gem 'bootstrap', '~> 4.0.0.beta2.1'
+# gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'bootstrap', '~> 4.1.1'
 gem 'simple_form', '~> 3.5', '>= 3.5.1'
 gem "paperclip", "= 4.3.6" # (4.3.7 has deprecation warnings for pre-upgrade)
 gem "aws-sdk", "< 2.0"
@@ -37,6 +38,7 @@ gem 'rails', '~> 5.1.5'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-sass', '3.2.0.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

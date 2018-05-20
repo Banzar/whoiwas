@@ -5,172 +5,174 @@
 	<%= @user.name %>'s Profile
 <% end %>
 </title>
-
-<div class="left_column">
-	<% if @user.avatar.present? %>
-		<%= image_tag @user.avatar.url, size: "180x200" %>
-	<% else %>
-		<img src="../assets/nopic.png" height="200" width="180" />
-	<% end %>
-	<br>
-	<% if current_user.try(:admin?) %>
-		<% if @user.activated? %>
-			<strong>Activated</strong>
+<div class="row">
+	<div class="col-sm-3">
+		<% if @user.avatar.present? %>
+			<%= image_tag @user.avatar.url, size: "180x200" %>
 		<% else %>
-			<strong>Not Activated</strong>
+			<img src="../assets/nopic.png" height="200" width="180" />
 		<% end %>
-	<% end %>
-</div>
-<div class="memories">
-	<% if current_user == @user %>
-		<%= form_tag charges_path do %>
-		  <article>
-		    <% if flash[:error].present? %>
-		      <div id="error_explanation">
-		        <p><%= flash[:error] %></p>
-		      </div>
-		    <% end %>
-		    <label class="amount">
-		    	<% if current_user.legacy_count.nil? %>
-		    		<span>
-		    			<strong>You do not have any legacy pages yet.</strong> To purchase a legacy page (<strong><%= @sale_price %></strong>), you just have to click the "Pay with card" button below.
-		    		</span>
-
-		    	<% else %>
-		    		<span>
-		    		<strong>You currently have <%= current_user.legacy_count %> Legacy page(s).</strong> To purchase another legacy, just click the "Pay with card" button.</span>
-		    	<% end %>
-		    </label>
-		  </article>
-
-		  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-		          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-		          data-description="Add Legacy to account"
-		          data-amount="7999"
-		          data-locale="auto"></script>
+		<br>
+		<% if current_user.try(:admin?) %>
+			<% if @user.activated? %>
+				<strong>Activated</strong>
+			<% else %>
+				<strong>Not Activated</strong>
+			<% end %>
 		<% end %>
-	<% end %>
-</div>
-<div class="content_body">
-	<% if current_user == @user  %>
-		<h1>My Legacies</h1>
-		<p>You currently have <%= pluralize(current_user.legacies.count, "legacy") %>. 
+	</div>
+	<div class="col-sm-6">
+		<% if current_user == @user  %>
+			<h1>My Legacies</h1>
+			<p>You currently have <%= pluralize(current_user.legacies.count, "legacy") %>. 
+				<% unless @user.legacies.count.nil? || @user.legacy_count.nil? %>
+				You currently have <%= pluralize(current_user.legacy_count - current_user.legacies.count, "legacy") %> available to use.
+				<% end %>
+			</p> 
 			<% unless @user.legacies.count.nil? || @user.legacy_count.nil? %>
-			You currently have <%= pluralize(current_user.legacy_count - current_user.legacies.count, "legacy") %> available to use.
+				<% if current_user.legacy_count - current_user.legacies.count >= 1 %>
+					<p>You can click the "New Legacy" link below to create a new legacy.</p> 
+					<p><%= link_to 'New Legacy', new_legacy_path %></p>
+				<% end %>
+			<% else %><p>You can purchase a new legacy to create one: <%= @legacy_price %>, but you can get it for the sale price now, which is 80% off the regular price, <strong><%= @sale_price %></strong> now by selecting the button to the right, "Pay with card".</p>
 			<% end %>
-		</p> 
-		<% unless @user.legacies.count.nil? || @user.legacy_count.nil? %>
-			<% if current_user.legacy_count - current_user.legacies.count >= 1 %>
-				<p>You can click the "New Legacy" link below to create a new legacy.</p> 
-				<p><%= link_to 'New Legacy', new_legacy_path %></p>
-			<% end %>
-		<% else %><p>You can purchase a new legacy to create one: <%= @legacy_price %>, but you can get it for the sale price now, which is 80% off the regular price, <strong><%= @sale_price %></strong> now by selecting the button to the right, "Pay with card".</p>
+
+			<table>
+			  <thead>
+			    <tr>
+			      <th>Photo</th>
+			      <th>Name</th>
+			      <th>State</th>
+			      <th>About</th>
+			      <th colspan="3"></th>
+			    </tr>
+			  </thead>
+
+			  <tbody>
+			    <% @user.legacies.each do |legacy| %>
+			      <tr>
+			        <% if legacy.photo.present? %>
+			          <td><%= link_to image_tag(legacy.photo.url, size: "40x40"), legacy %></td>
+			        <% else %>
+			          <td><a href="/legacies/<%= legacy.id %>"><img src="assets/nopic.png" height="40" width="40"></td>
+			        <% end %>
+
+			        <td style="width: 120px;"><%= legacy.name %></td>
+			        <td><%= legacy.state %></td>
+			        <td><%= legacy.about.truncate(15) %></td>
+			        <% if current_user.try(:admin) %>
+			          <td><%= link_to 'Show', legacy %></td>
+			          <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
+			          <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			        <% end %>
+			      </tr>
+			    <% end %>
+			  </tbody>
+			</table>
+		<% else %>
+			<h1>My Legacies</h1>
+			<table>
+			  <thead>
+			    <tr>
+			      <th>Photo</th>
+			      <th>Name</th>
+			      <th>State</th>
+			      <th>About</th>
+			      <th colspan="3"></th>
+			    </tr>
+			  </thead>
+
+			  <tbody>
+			    <% @user.legacies.each do |legacy| %>
+			      <tr>
+			        <% if legacy.photo.present? %>
+			          <td><%= link_to image_tag(legacy.photo.url, size: "40x40"), legacy %></td>
+			        <% else %>
+			          <td><a href="/legacies/<%= legacy.id %>"><img src="../assets/nopic.png" height="40" width="40"></td>
+			        <% end %>
+
+			        <td style="width: 120px;"><%= legacy.name %></td>
+			        <td><%= legacy.state %></td>
+			        <td><%= legacy.about.truncate(50) %></td>
+			        <% if current_user.try(:admin) %>
+			          <td><%= link_to 'Show', legacy %></td>
+			          <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
+			          <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			        <% end %>
+			      </tr>
+			    <% end %>
+			  </tbody>
+			</table>
 		<% end %>
+		<% if current_user.try(:super?) %>
+			<%= link_to 'Edit', edit_user_path(@user) %>
+		<% end %>
+		<%= link_to 'Back', :back %>
 
-		<table>
-		  <thead>
-		    <tr>
-		      <th>Photo</th>
-		      <th>Name</th>
-		      <th>State</th>
-		      <th>About</th>
-		      <th colspan="3"></th>
-		    </tr>
-		  </thead>
+		<% if current_user.try(:super?) %>
+			<br><br>
+			<hr>
+			<h1>Expired Accounts</h1>
+			<br><br>
+			<table>
+			  <thead>
+			    <tr>
+			      <th>Photo</th>
+			      <th>Name</th>
+			      <th>Email</th>
+			      <th colspan="3"></th>
+			    </tr>
+			  </thead>
 
-		  <tbody>
-		    <% @user.legacies.each do |legacy| %>
-		      <tr>
-		        <% if legacy.photo.present? %>
-		          <td><%= link_to image_tag(legacy.photo.url, size: "40x40"), legacy %></td>
-		        <% else %>
-		          <td><a href="/legacies/<%= legacy.id %>"><img src="assets/nopic.png" height="40" width="40"></td>
-		        <% end %>
+			  <tbody>
+			    <% @unactivated_expired.each do |user| %>
+			      <tr>
+			        <% if user.avatar.present? %>
+			          <td><%= link_to image_tag(user.avatar.url, size: "40x40"), user %></td>
+			        <% else %>
+			          <td><a href="/users/<%= user.id %>"><img src="../assets/nopic.png" height="40" width="40"></td>
+			        <% end %>
 
-		        <td style="width: 120px;"><%= legacy.name %></td>
-		        <td><%= legacy.state %></td>
-		        <td><%= legacy.about.truncate(15) %></td>
-		        <% if current_user.try(:admin) %>
-		          <td><%= link_to 'Show', legacy %></td>
-		          <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
-		          <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		        <% end %>
-		      </tr>
-		    <% end %>
-		  </tbody>
-		</table>
-	<% else %>
-		<h1>My Legacies</h1>
-		<table>
-		  <thead>
-		    <tr>
-		      <th>Photo</th>
-		      <th>Name</th>
-		      <th>State</th>
-		      <th>About</th>
-		      <th colspan="3"></th>
-		    </tr>
-		  </thead>
+			        <td style="width: 120px;"><%= user.name %></td>
+			        <td><%= user.email %></td>
+					<td><%= link_to 'Edit', edit_user_path(user) %></td>
+					<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			      </tr>
+			    <% end %>
+			  </tbody>
+			</table>	
+		<% end %>
+	</div>
+	<div class="col-sm-3">
+		<% if current_user == @user %>
+			<%= form_tag charges_path do %>
+			  <article>
+			    <% if flash[:error].present? %>
+			      <div id="error_explanation">
+			        <p><%= flash[:error] %></p>
+			      </div>
+			    <% end %>
+			    <label class="amount">
+			    	<% if current_user.legacy_count.nil? %>
+			    		<span>
+			    			<strong>You do not have any legacy pages yet.</strong> To purchase a legacy page (<strong><%= @sale_price %></strong>), you just have to click the "Pay with card" button below.
+			    		</span>
 
-		  <tbody>
-		    <% @user.legacies.each do |legacy| %>
-		      <tr>
-		        <% if legacy.photo.present? %>
-		          <td><%= link_to image_tag(legacy.photo.url, size: "40x40"), legacy %></td>
-		        <% else %>
-		          <td><a href="/legacies/<%= legacy.id %>"><img src="../assets/nopic.png" height="40" width="40"></td>
-		        <% end %>
+			    	<% else %>
+			    		<span>
+			    		<strong>You currently have <%= current_user.legacy_count %> Legacy page(s).</strong> To purchase another legacy, just click the "Pay with card" button.</span>
+			    	<% end %>
+			    </label>
+			  </article>
 
-		        <td style="width: 120px;"><%= legacy.name %></td>
-		        <td><%= legacy.state %></td>
-		        <td><%= legacy.about.truncate(50) %></td>
-		        <% if current_user.try(:admin) %>
-		          <td><%= link_to 'Show', legacy %></td>
-		          <td><%= link_to 'Edit', edit_legacy_path(legacy) %></td>
-		          <td><%= link_to 'Destroy', legacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		        <% end %>
-		      </tr>
-		    <% end %>
-		  </tbody>
-		</table>
-	<% end %>
-	<% if current_user.try(:super?) %>
-		<%= link_to 'Edit', edit_user_path(@user) %>
-	<% end %>
-	<%= link_to 'Back', :back %>
-
-	<% if current_user.try(:super?) %>
-		<br><br>
-		<hr>
-		<h1>Expired Accounts</h1>
-		<br><br>
-		<table>
-		  <thead>
-		    <tr>
-		      <th>Photo</th>
-		      <th>Name</th>
-		      <th>Email</th>
-		      <th colspan="3"></th>
-		    </tr>
-		  </thead>
-
-		  <tbody>
-		    <% @unactivated_expired.each do |user| %>
-		      <tr>
-		        <% if user.avatar.present? %>
-		          <td><%= link_to image_tag(user.avatar.url, size: "40x40"), user %></td>
-		        <% else %>
-		          <td><a href="/users/<%= user.id %>"><img src="../assets/nopic.png" height="40" width="40"></td>
-		        <% end %>
-
-		        <td style="width: 120px;"><%= user.name %></td>
-		        <td><%= user.email %></td>
-				<td><%= link_to 'Edit', edit_user_path(user) %></td>
-				<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		      </tr>
-		    <% end %>
-		  </tbody>
-		</table>	
-	<% end %>
+			  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+			          data-description="Add Legacy to account"
+			          data-amount="7999"
+			          data-locale="auto"></script>
+			<% end %>
+		<% end %>
+	</div>	
 </div>
+
 <div class="clear"></div>
