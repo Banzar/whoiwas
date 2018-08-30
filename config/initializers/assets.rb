@@ -11,5 +11,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-# Rails.application.config.assets.precompile += %w( modernizr-2.8.3.min.js phone.css phone.js )
-Rails.application.config.assets.precompile = true
+Rails.application.config.assets.precompile += %w( modernizr-2.8.3.min.js phone.css phone.js )
